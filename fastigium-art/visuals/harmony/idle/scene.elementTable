@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <elements source="Harmony Premium (HarmonyPremium.exe) version 21.1.0 build 18394 2022-05-04 01:21:50" version="2110" build="18394">
- <element id="1" elementName="Drawing" elementFolder="Drawing" pixmapFormat="2" scanType="2" fieldChart="12" vectorType="2" rootFolder="elements"/>
+ <element id="2" elementName="him" elementFolder="him" pixmapFormat="10" scanType="2" fieldChart="12" vectorType="0" rootFolder="elements"/>
+ <element id="3" elementName="proportionsTest" elementFolder="proportionsTest" pixmapFormat="10" scanType="2" fieldChart="12" vectorType="0" rootFolder="elements"/>
+ <element id="4" elementName="head" elementFolder="head" pixmapFormat="2" scanType="2" fieldChart="12" vectorType="2" rootFolder="elements"/>
+ <element id="5" elementName="newProportions" elementFolder="newProportions.5" pixmapFormat="10" scanType="2" fieldChart="12" vectorType="0" rootFolder="elements"/>
 </elements>
