@@ -46,42 +46,49 @@
     </column>
     <column type="3" name="ATV-0BBB41FA0940496D" displayOrder="5" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="-18.886278324134157" y="-18.886278324134157"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940496E" displayOrder="6" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="-1.2766764851571555" y="-1.2766764851571555"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940496F" displayOrder="7" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0" y="0"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA09404970" displayOrder="8" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0.9250672856547496" y="0.9250672856547496"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA09404971" displayOrder="9" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0.92034317146033551" y="0.92034317146033551"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA09404972" displayOrder="10" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0" y="0"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA09404973" displayOrder="11" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0" y="0"/>
      </points>
@@ -91,42 +98,49 @@
     </column>
     <column type="3" name="ATV-0BBB41FA0940A5A4" displayOrder="12" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="-99.440723582051007" y="-99.440723582051007"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940A5A5" displayOrder="13" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="99.584272098001122" y="99.584272098001122"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940A5A6" displayOrder="14" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0" y="0"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940A5A7" displayOrder="15" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="10.243773053110406" y="10.243773053110406"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940A5A8" displayOrder="16" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="10.243773053110406" y="10.243773053110406"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940A5A9" displayOrder="17" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0" y="0"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940A5AA" displayOrder="18" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0" y="0"/>
      </points>
@@ -139,42 +153,49 @@
     </column>
     <column type="3" name="ATV-0BBB41FA0940CE58" displayOrder="19" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0.0089995894753751582" y="0.0089995894753751582"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940CE59" displayOrder="20" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="-0.14999963767847227" y="-0.14999963767847227"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940CE5A" displayOrder="21" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="0" y="0"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940CE5B" displayOrder="22" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="1.1025262792338775" y="1.1025262792338775"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940CE5C" displayOrder="23" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="1.0091214175217205" y="1.0091214175217205"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940CE5D" displayOrder="24" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="-2.5377183596157096e-15" y="-2.5377183596157096e-15"/>
      </points>
     </column>
     <column type="3" name="ATV-0BBB41FA0940CE5E" displayOrder="25" width="100" anonymous="true">
      <step val="1" start="1" stop="1"/>
+     <noFrames/>
      <points version="2">
       <pt constSeg="false" x="1" yLocal="-2.537718359615712e-15" y="-2.537718359615712e-15"/>
      </points>
