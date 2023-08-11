@@ -7,7 +7,7 @@ namespace TarodevController {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class PlayerController : MonoBehaviour, IPlayerController {
         [SerializeField] private ScriptableStats _stats;
-
+        public static PlayerController playerInstance;
         #region Internal
 
         [HideInInspector] private Rigidbody2D _rb; // Hide is for serialization to avoid errors in gizmo calls
@@ -74,6 +74,13 @@ namespace TarodevController {
             Physics2D.queriesStartInColliders = false;
 
             ToggleColliders(isStanding: true);
+
+        if (playerInstance == null) {
+            playerInstance = this;
+            DontDestroyOnLoad(gameObject);
+        } else {
+            Destroy(gameObject);
+        }
         }
 
         protected virtual void Update() {

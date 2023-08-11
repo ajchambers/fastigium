@@ -47,7 +47,7 @@ MonoBehaviour:
   WallClimbSpeed: 5
   WallFallAcceleration: 8
   MaxWallFallSpeed: 15
-  WallJumpPower: {x: 30, y: 25}
+  WallJumpPower: {x: 15, y: 25}
   WallJumpInputLossFrames: 18
   WallJumpCoyoteFrames: 5
   WallDetectorSize: {x: 0.75, y: 1.25}
