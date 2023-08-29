@@ -58,6 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be9ea246927b6a447890e7013672f25e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlayerAlive: 1
 --- !u!114 &336226617404520415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,3 +72,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTimeStopped: 0
+  pauseIcon: {fileID: 0}
+  timeStopDuration: 0
+  countdownText: {fileID: 0}

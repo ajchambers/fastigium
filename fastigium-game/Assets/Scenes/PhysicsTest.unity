@@ -168,7 +168,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTimeStopped: 0
+  timeStopDuration: 0
+  coolDownTime: 0
+  canStopTime: 0
   pauseIcon: {fileID: 660095435}
+  countdownText: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!1 &209679941
 GameObject:
   m_ObjectHideFlags: 0
@@ -2881,7 +2886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99615ba902628ae449477fa09d9da442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityPlatform: {fileID: 994982471746042884, guid: 617ec3d1c98ca8944ae8759a442c7236, type: 3}
+  Platform: {fileID: 0}
   objectExists: 0
 --- !u!4 &1601015643
 Transform:
@@ -3127,5 +3132,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99615ba902628ae449477fa09d9da442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravityPlatform: {fileID: 994982471746042884, guid: 617ec3d1c98ca8944ae8759a442c7236, type: 3}
+  Platform: {fileID: 0}
   objectExists: 0

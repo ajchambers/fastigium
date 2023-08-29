@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spanwer : MonoBehaviour
 {
-    public GameObject gravityPlatform;
+    public GameObject Platform;
     public bool objectExists;
 
     void Update() {
@@ -17,7 +17,7 @@ public class Spanwer : MonoBehaviour
 
     private void generateObject() {
         if(!objectExists) {
-            Instantiate(gravityPlatform, transform.position, Quaternion.identity);
+            Instantiate(Platform, transform.position, Quaternion.identity);
             this.objectExists = true;
         }
     }

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager gmInstance;
     public static Vector3 respawnPoint;
 
+    public bool isPlayerAlive = true;
+
     // keep the same game manager object throughout all levels
     private void Awake() {
         if (gmInstance == null) {
@@ -17,7 +19,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update() {
+        
+    }
+
     public void KillPlayer() {
+        isPlayerAlive = false;
         StartCoroutine(Respawn(1.0f));
     }
 
@@ -31,6 +38,7 @@ public class GameManager : MonoBehaviour
         playerRb.transform.position = respawnPoint;
         // transform.localScale = new Vector2 (0, 0);
         playerRb.simulated = true;
+        isPlayerAlive = true;
     }
 
     public void setRespawnPoint(Vector3 coords) {

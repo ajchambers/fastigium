@@ -9,6 +9,11 @@ public class MainMenu : MonoBehaviour {
         SceneManager.LoadScene("t1");
     }
 
+    public void ClearSaveData() {
+        Debug.Log("Are you sure you want to clear all progess?");
+    }
+
+
     public void Options() {
         SceneManager.LoadScene("OptionsMenu");
     }

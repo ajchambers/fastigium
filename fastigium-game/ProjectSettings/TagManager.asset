@@ -8,6 +8,7 @@ TagManager:
   - FallingPlatform
   - TimeManager
   - GameManager
+  - Missile
   layers:
   - Default
   - TransparentFX
