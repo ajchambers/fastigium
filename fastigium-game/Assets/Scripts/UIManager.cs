@@ -10,16 +10,10 @@ public class UIManager : MonoBehaviour {
     public GameObject pauseMenuUI;
 
     private void Awake() {
-        if (uiManagerInstance == null) {
-            uiManagerInstance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
-
-        Canvas canvas = gameObject.GetComponent<Canvas>();
+        Canvas canvas =  GameObject.Find("UICanvas").GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.worldCamera = Camera.main;
+        pauseMenuUI.SetActive(false);
     }
 
     private void Update() {
@@ -44,18 +38,18 @@ public class UIManager : MonoBehaviour {
         gameIsPaused = false;
     }
 
-    // TODO: this...
-    public void Save() {
-        Debug.Log("Game saved.");
-    }
-
-    public void LoadMenu() {
+    public void SaveAndQuit() {
+        // unpause the game
         pauseMenuUI.SetActive(false);
-
-        Destroy(GameObject.Find("GameManager"));
-        Destroy(GameObject.Find("Player"));
-        Destroy(GameObject.Find("UICanvas"));
         Time.timeScale = 1f;
+
+        // save game
+        GameManager.gmInstance.GetComponent<SaveManager>().SaveGame();
+        
+        //(GameObject.Find("GameManager")).SetActive(false);
+
+        Destroy(GameObject.Find("Player"));
+        // (GameObject.Find("UICanvas")).SetActive(false);
 
         SceneManager.LoadScene("MainMenu");
     }

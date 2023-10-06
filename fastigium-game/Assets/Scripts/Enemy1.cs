@@ -1,5 +1,45 @@
 using UnityEngine;
-public class Enemy1 : MonoBehaviour {
+public class Enemy1 : MonoBehaviour, ISaveable {
+    [Header("For Saving")]
+    [SerializeField] private string id;
+    
+    public bool isDead;
+
+    [ContextMenu("Generate guid for ID")]
+    private void GenerateGuid() {
+        id = System.Guid.NewGuid().ToString();
+    }
+
+    private void Awake() {
+        enemyRB = GetComponent<Rigidbody2D>(); 
+        Transform player = GameObject.Find("Player").transform;
+
+        // enemyAnim = GetComponent<Animator>(); 
+    }
+
+    private void OnDisable() {
+        MarkAsDead();
+    }
+
+    public void MarkAsDead() {
+        this.isDead = true;
+    }
+
+    public void LoadData(GameData data) {
+        data.enemy1s.TryGetValue(id, out isDead);
+
+        if (isDead) {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void SaveData(ref GameData data) {
+        if (data.enemy1s.ContainsKey(id)) {
+            data.enemy1s.Remove(id);
+        }
+        data.enemy1s.Add(id, isDead);
+    }
+    
     [Header("For Patrolling")]
     [SerializeField] float moveSpeed;
     private float moveDirection = 1;
@@ -31,10 +71,7 @@ public class Enemy1 : MonoBehaviour {
     private Rigidbody2D enemyRB;
 
     void Start() {
-        enemyRB = GetComponent<Rigidbody2D>(); 
-        Transform player = GameObject.Find("Player").transform;
-
-        // enemyAnim = GetComponent<Animator>();        
+       
     }
 
     void FixedUpdate() {
@@ -109,5 +146,5 @@ public class Enemy1 : MonoBehaviour {
 
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, lineOfSite);
-    }
+    } 
 }

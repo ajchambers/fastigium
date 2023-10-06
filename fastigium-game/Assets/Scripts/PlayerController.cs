@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace TarodevController {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
-    public class PlayerController : MonoBehaviour, IPlayerController {
+    public class PlayerController : MonoBehaviour, IPlayerController, ISaveable {
         [SerializeField] private ScriptableStats _stats;
 
         public static PlayerController playerInstance;
@@ -47,6 +47,20 @@ namespace TarodevController {
         public bool GrabbingLedge { get; private set; }
         public bool ClimbingLedge { get; private set; }
 
+        public Vector3 playerPosition;
+
+        public Vector3 getPosition() {
+            return transform.position;
+        }
+
+        public void LoadData(GameData data) {
+            transform.position = data.playerPosition;
+        }
+
+        public void SaveData(ref GameData data) {
+            data.playerPosition = this.getPosition(); 
+        }
+
         public virtual void ApplyVelocity(Vector2 vel, PlayerForce forceType) {
             if (forceType == PlayerForce.Burst) _speed += vel;
             else _currentExternalVelocity += vel;
@@ -70,19 +84,20 @@ namespace TarodevController {
         #endregion
 
         protected virtual void Awake() {
+            if (playerInstance == null) {
+                playerInstance = this;
+                DontDestroyOnLoad(gameObject);
+            } else {
+                Destroy(gameObject);
+                Debug.Log("Destroyed instance of player because there was already one in the scene.");
+            }
+
             _rb = GetComponent<Rigidbody2D>();
             _input = GetComponent<PlayerInput>();
             _cachedTriggerSetting = Physics2D.queriesHitTriggers;
             Physics2D.queriesStartInColliders = false;
 
             ToggleColliders(isStanding: true);
-
-        if (playerInstance == null) {
-            playerInstance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
         }
 
         protected virtual void Update() {

@@ -1,48 +1,103 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
+    [Header("File Storage Config")]
+    [SerializeField] private string fileName;
+    
+    private GameData gameData;
+    private List<ISaveable> saveableObjects;
+    private DataFileHandler fileHandler;
 
-void Save() {
-    getLastScene();
-    getPlayerPosition();
-    getLastCheckpoint();
+    [SerializeField] GameObject player;
 
-    getPlatformPositions();
-    getEnemies();
-    getEnemyPositions();
-    getDeathCount();
+    public GameObject pauseMenuUI;
 
-    // SaveData = new SaveData();
-}
-
-    void getLastScene() {
-
+    private void Awake() {
+        this.fileHandler = new DataFileHandler(Application.persistentDataPath, fileName);
     }
 
-    void getPlayerPosition() {
-
+    private void OnEnable() {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
-    void getLastCheckpoint() {
-
+    private void OnDisable() {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
 
-    void getPlatformPositions() {
-
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        this.saveableObjects = FindAllSaveableObjects();
+        //GiveDataToObjects(); // FOUND THE PROBLEM AREA
     }
 
-    void getEnemies() {
-
+    public void OnSceneUnloaded(Scene scene) {
+        
     }
 
-    void getEnemyPositions() {
-
+    public string getLastSceneName() {
+        return gameData.currentScene;
     }
 
-    void getDeathCount() {
-
+    public void NewGame() {
+        this.gameData = new GameData();
     }
 
+    public void GiveDataToObjects() {
+        // push the loaded data to all the scripts that need it
+        foreach (ISaveable saveableObject in saveableObjects) {
+            saveableObject.LoadData(gameData);
+        }
+    }
+
+    public void LoadGame() {
+        // load save file
+        this.gameData = fileHandler.Load();
+
+        // if there's no file, start a new one
+        if (this.gameData == null){
+            Debug.Log("No game data found. Initializing data to defaults.");
+            NewGame();
+        }
+
+        // load current scene
+        SceneManager.LoadScene(gameData.currentScene);
+
+        // place a player at the spawn point
+        GameObject p = Instantiate(player, gameData.playerPosition, Quaternion.identity);
+        p.name = "Player";
+
+        // enable UICanvas
+        GameObject.Find("UICanvas").GetComponent<Canvas>().enabled = true;
+        pauseMenuUI.SetActive(false);
+
+        // push the loaded data to all the scripts that need it
+        foreach (ISaveable saveableObject in saveableObjects) {
+            saveableObject.LoadData(gameData);
+        }
+    }
+
+    public void SaveGame() {
+        // pass gameData to other scripts so they can update it
+        foreach (ISaveable saveableObject in saveableObjects) {
+            saveableObject.SaveData(ref gameData);
+        }
+
+        // save to file
+        fileHandler.Save(gameData);
+    }
+
+    private void OnApplicationQuit() {
+        SaveGame();
+    }
+
+    private List<ISaveable> FindAllSaveableObjects() {
+        IEnumerable<ISaveable> saveableObjects = FindObjectsOfType<MonoBehaviour>()
+            .OfType<ISaveable>();
+        return new List<ISaveable>(saveableObjects);
+    }
 }

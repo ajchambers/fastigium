@@ -427,6 +427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 057d6b21fecbe334a994de2c31245631, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 
+  isDead: 0
   moveSpeed: 3
   groundCheckPoint: {fileID: 8520470969662850040}
   wallCheckPoint: {fileID: 8520470969411247112}
@@ -446,6 +448,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   canSeePlayer: 0
+  isFrozen: 0
+  brain: {fileID: 8520470969667004474}
 --- !u!50 &8520470970610193053
 Rigidbody2D:
   serializedVersion: 4

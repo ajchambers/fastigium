@@ -96,7 +96,6 @@ public class TimeManager : MonoBehaviour
             float progress = i / (float)coolDownTime;
             slider.value = progress;
         }
-
         canStopTime = true;
     }
 
