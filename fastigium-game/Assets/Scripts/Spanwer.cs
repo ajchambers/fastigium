@@ -8,14 +8,14 @@ public class Spanwer : MonoBehaviour
     public bool objectExists;
 
     void Update() {
-        generateObject();
+        GenerateObject();
     }
 
     public void objectDestroyed() {
         objectExists = false;
     }
 
-    private void generateObject() {
+    private void GenerateObject() {
         if(!objectExists) {
             Instantiate(Platform, transform.position, Quaternion.identity);
             this.objectExists = true;

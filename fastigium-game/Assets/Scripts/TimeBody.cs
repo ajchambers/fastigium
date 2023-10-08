@@ -5,36 +5,38 @@ using System.Threading.Tasks;
 
 public class TimeBody : MonoBehaviour
 {
-    public float TimeBeforeAffected; //The time after the object spawns until it will be affected by the timestop(for projectiles etc)
     private TimeManager timeManager;
+
+    public float timeBeforeAffected; //The time after the object spawns until it will be affected by the timestop(for projectiles etc)
+    private float timeBeforeAffectedTimer;
+    
     private Rigidbody2D rb;
+    private Vector3 lastPosition;
+    private Transform t;
+    
     private Vector2 recordedVelocity;
     private float recordedMagnitude;
 
-    private float TimeBeforeAffectedTimer;
-    private bool CanBeAffected;
-    private bool IsStopped;
-
-    private Vector3 lastPosition;
-    private Transform t;
+    private bool canBeAffected;
+    private bool isStopped;
 
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        timeManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TimeManager>();
-        TimeBeforeAffectedTimer = TimeBeforeAffected;
+        timeManager = GameObject.FindGameObjectWithTag("GeneralManager").GetComponent<TimeManager>();
+        timeBeforeAffectedTimer = timeBeforeAffected;
 
         t = transform;
         lastPosition = t.position;
     }
 
     void Update() { 
-        TimeBeforeAffectedTimer -= Time.deltaTime; // minus 1 per second
-        if(TimeBeforeAffectedTimer <= 0f) {
-            CanBeAffected = true; // Will be affected by timestop
+        timeBeforeAffectedTimer -= Time.deltaTime; // minus 1 per second
+        if(timeBeforeAffectedTimer <= 0f) {
+            canBeAffected = true; // Will be affected by timestop
         }
 
-        if(CanBeAffected && timeManager.isTimeStopped && !IsStopped){
+        if(canBeAffected && timeManager.isTimeStopped && !isStopped){
             StopTime();
         }
     }
@@ -46,13 +48,13 @@ public class TimeBody : MonoBehaviour
 
             rb.velocity = Vector2.zero; //makes the rigidbody stop moving
             rb.isKinematic = true; //not affected by forces
-            IsStopped = true; // prevents this from looping
+            isStopped = true; // prevents this from looping
         }
     }
 
     public void ContinueTime() {
         rb.isKinematic = false;
-        IsStopped = false;
+        isStopped = false;
         // rb.velocity = recordedVelocity * recordedMagnitude; //Adds back the recorded velocity when time continues
     }
 }

@@ -39,7 +39,7 @@ public class SceneController : MonoBehaviour, ISaveable {
             Destroy(gameObject);
         }
 
-        sm = (SaveManager)GameManager.gmInstance.GetComponent("SaveManager");
+        sm = (SaveManager)GeneralManager.gmInstance.GetComponent("SaveManager");
     }
 
     public void NextLevel(string sceneName, Vector3 spawnPoint) {
@@ -47,7 +47,7 @@ public class SceneController : MonoBehaviour, ISaveable {
         SceneManager.LoadScene(sceneName);
 
         // update the current scene attribute
-        setCurrentScene(sceneName);
+        SetCurrentScene(sceneName);
         Debug.Log("Updated gameData.currentScene to: " + sceneName);
 
         // move player to the correct point in the next level
@@ -57,11 +57,11 @@ public class SceneController : MonoBehaviour, ISaveable {
         sm.SaveGame();
     }
 
-    public string getCurrentScene() {
+    public string GetCurrentScene() {
         return currentScene;
     }
 
-    public void setCurrentScene(string currentScene) {
+    public void SetCurrentScene(string currentScene) {
         this.currentScene = currentScene;
     }
 
@@ -70,6 +70,6 @@ public class SceneController : MonoBehaviour, ISaveable {
     }
 
     public void SaveData(ref GameData data) {
-        data.currentScene = this.getCurrentScene();
+        data.currentScene = this.GetCurrentScene();
     }
 }

@@ -2,42 +2,12 @@ using UnityEngine;
 public class Enemy1 : MonoBehaviour, ISaveable {
     [Header("For Saving")]
     [SerializeField] private string id;
-    
     public bool isDead;
+    private int skin;
 
     [ContextMenu("Generate guid for ID")]
     private void GenerateGuid() {
         id = System.Guid.NewGuid().ToString();
-    }
-
-    private void Awake() {
-        enemyRB = GetComponent<Rigidbody2D>(); 
-        Transform player = GameObject.Find("Player").transform;
-
-        // enemyAnim = GetComponent<Animator>(); 
-    }
-
-    private void OnDisable() {
-        MarkAsDead();
-    }
-
-    public void MarkAsDead() {
-        this.isDead = true;
-    }
-
-    public void LoadData(GameData data) {
-        data.enemy1s.TryGetValue(id, out isDead);
-
-        if (isDead) {
-            gameObject.SetActive(false);
-        }
-    }
-
-    public void SaveData(ref GameData data) {
-        if (data.enemy1s.ContainsKey(id)) {
-            data.enemy1s.Remove(id);
-        }
-        data.enemy1s.Add(id, isDead);
     }
     
     [Header("For Patrolling")]
@@ -70,8 +40,11 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     // private Animator enemyAnim;
     private Rigidbody2D enemyRB;
 
-    void Start() {
-       
+    private void Awake() {
+        enemyRB = GetComponent<Rigidbody2D>(); 
+        Transform player = GameObject.Find("Player").transform;
+
+        // enemyAnim = GetComponent<Animator>(); 
     }
 
     void FixedUpdate() {
@@ -84,7 +57,7 @@ public class Enemy1 : MonoBehaviour, ISaveable {
         // AnimationController();
 
         // if time is not stopped
-        if (!GameManager.gmInstance.GetComponent<TimeManager>().isTimeStopped) {
+        if (!GeneralManager.gmInstance.GetComponent<TimeManager>().isTimeStopped) {
             if (canSeePlayer && isGrounded) {
                 JumpAttack();
             }
@@ -92,6 +65,29 @@ public class Enemy1 : MonoBehaviour, ISaveable {
                 Petrolling();
             }   
         }
+    }
+
+    private void OnDisable() {
+        MarkAsDead();
+    }
+
+    public void MarkAsDead() {
+        this.isDead = true;
+    }
+
+    public void LoadData(GameData data) {
+        data.enemy1s.TryGetValue(id, out isDead);
+
+        if (isDead) {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public void SaveData(ref GameData data) {
+        if (data.enemy1s.ContainsKey(id)) {
+            data.enemy1s.Remove(id);
+        }
+        data.enemy1s.Add(id, isDead);
     }
 
     void Petrolling() {

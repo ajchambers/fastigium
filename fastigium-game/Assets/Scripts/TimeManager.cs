@@ -41,7 +41,7 @@ public class TimeManager : MonoBehaviour
         }
 
         // if the player dies, continue time
-        if (!GameManager.gmInstance.isPlayerAlive) {
+        if (!GeneralManager.gmInstance.isPlayerAlive) {
             ContinueTime();
         }
     }

@@ -5,7 +5,11 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.CompareTag("Player")) {
-            GameManager.gmInstance.setRespawnPoint(this.transform.position);
+            UpdateSpawnPoint();
         }
+    }
+
+    private void UpdateSpawnPoint() {
+        GeneralManager.gmInstance.SetRespawnPoint(this.transform.position);
     }
 }

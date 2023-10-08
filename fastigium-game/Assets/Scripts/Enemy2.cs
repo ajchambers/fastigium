@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy2 : MonoBehaviour {
+    [Header("For Saving")]
+    [SerializeField] private string id;
+    public bool isDead;
+    private int skin;
+
     [Header("For Navigation")]
     [SerializeField] Transform wallCheckLeft;
     [SerializeField] Transform wallCheckRight;
@@ -114,7 +119,7 @@ public class Enemy2 : MonoBehaviour {
     }
 
     void CheckIfPlayerIsAlive() {
-        if(!GameManager.gmInstance.isPlayerAlive) {
+        if(!GeneralManager.gmInstance.isPlayerAlive) {
             Unlock();
         }
     }
@@ -129,7 +134,7 @@ public class Enemy2 : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    bool TimeIsStopped() {
-        return GameManager.gmInstance.GetComponent<TimeManager>().isTimeStopped;
+    bool TimeIsStopped() { // TODO: should be handled by time manager
+        return GeneralManager.gmInstance.GetComponent<TimeManager>().isTimeStopped;
     }
 }

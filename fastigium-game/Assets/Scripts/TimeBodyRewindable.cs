@@ -5,17 +5,23 @@ using System.Threading.Tasks;
 
 public class TimeBodyRewindable : MonoBehaviour
 {
-    public float TimeBeforeAffected; //The time after the object spawns until it will be affected by the timestop(for projectiles etc)
+    // for stopping time
     private TimeManager timeManager;
+
+    public float TimeBeforeAffected; //The time after the object spawns until it will be affected by the timestop(for projectiles etc)
+    private float TimeBeforeAffectedTimer;
+    
     private Rigidbody2D rb;
+    private Vector3 lastPosition;
+    private Transform t;
+
     private Vector2 recordedVelocity;
     private float recordedMagnitude;
 
-    private float TimeBeforeAffectedTimer;
     private bool CanBeAffected;
     private bool IsStopped;
 
-    bool isRewinding = false;
+    // for rewinding objects
     public float recordTime = 5f;
     List<PointInTime> pointsInTime;
 
@@ -27,16 +33,14 @@ public class TimeBodyRewindable : MonoBehaviour
     
     bool isSelected;
     bool isHovered;
-
-    private Vector3 lastPosition;
-    private Transform t;
     private bool isMoving;
+    bool isRewinding = false;
 
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        timeManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TimeManager>();
+        timeManager = GameObject.FindGameObjectWithTag("GeneralManager").GetComponent<TimeManager>();
         TimeBeforeAffectedTimer = TimeBeforeAffected;
 
         t = transform;
@@ -67,8 +71,8 @@ public class TimeBodyRewindable : MonoBehaviour
     }
 
    	void FixedUpdate () {
-        handleBodyColor();
-        checkIfObjectMoving();
+        HandleBodyColor();
+        CheckIfObjectMoving();
 
 		if (isRewinding) {
 			Rewind();
@@ -128,7 +132,7 @@ public class TimeBodyRewindable : MonoBehaviour
             }
 	}
 
-    void checkIfObjectMoving() {
+    void CheckIfObjectMoving() {
         if (t.position != lastPosition) {
             isMoving = true;
         } else {
@@ -139,7 +143,6 @@ public class TimeBodyRewindable : MonoBehaviour
     }
 
     // handle color changes
-
     private void OnMouseEnter() {
         isHovered = true;
     }
@@ -153,7 +156,7 @@ public class TimeBodyRewindable : MonoBehaviour
         isSelected = true;
     }
 
-    void handleBodyColor() {
+    void HandleBodyColor() {
         if (isHovered && !isRewinding) {
             spriteRenderer.color = hoverColor;
         } else if (isRewinding) {

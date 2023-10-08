@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour {
     public static UIManager uiManagerInstance;
 
+    // flags
     public static bool gameIsPaused = false;
+    
     public GameObject pauseMenuUI;
 
     private void Awake() {
@@ -44,9 +46,9 @@ public class UIManager : MonoBehaviour {
         Time.timeScale = 1f;
 
         // save game
-        GameManager.gmInstance.GetComponent<SaveManager>().SaveGame();
+        GeneralManager.gmInstance.GetComponent<SaveManager>().SaveGame();
         
-        //(GameObject.Find("GameManager")).SetActive(false);
+        //(GameObject.Find("GeneralManager")).SetActive(false);
 
         Destroy(GameObject.Find("Player"));
         // (GameObject.Find("UICanvas")).SetActive(false);

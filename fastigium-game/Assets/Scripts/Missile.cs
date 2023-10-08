@@ -6,7 +6,7 @@ public class Missile : MonoBehaviour {
     public Transform target;
 
     private Rigidbody2D rb;
-    private PolygonCollider2D mCollider;
+    private PolygonCollider2D c;
 
     public float travelSpeed;
     public float rotateSpeed;
@@ -16,11 +16,11 @@ public class Missile : MonoBehaviour {
     void Start() {
         target = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
-        mCollider = GetComponent<PolygonCollider2D>();
+        c = GetComponent<PolygonCollider2D>();
     }
 
     void FixedUpdate() {
-        if (!GameManager.gmInstance.GetComponent<TimeManager>().isTimeStopped) {
+        if (!GeneralManager.gmInstance.GetComponent<TimeManager>().isTimeStopped) {
             Vector2 direction = (Vector2)target.position - rb.position;
             direction.Normalize();
             float rotateAmount = Vector3.Cross(direction, transform.up).z;        
@@ -31,7 +31,7 @@ public class Missile : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.name == "Player") {
-            GameManager.gmInstance.KillPlayer();
+            GeneralManager.gmInstance.KillPlayer();
         }
         Explode();
     }

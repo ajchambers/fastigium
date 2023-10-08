@@ -7,10 +7,10 @@ TagManager:
   - Undefined
   - FallingPlatform
   - TimeManager
-  - GameManager
   - Missile
   - Enemy1
   - Enemy2
+  - GeneralManager
   layers:
   - Default
   - TransparentFX

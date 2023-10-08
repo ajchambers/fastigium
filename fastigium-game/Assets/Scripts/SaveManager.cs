@@ -5,15 +5,16 @@ using System.Linq;
 using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
-    [Header("File Storage Config")]
-    [SerializeField] private string fileName;
-    
     private GameData gameData;
     private List<ISaveable> saveableObjects;
     private DataFileHandler fileHandler;
 
+    [Header("File Name")]
+    [SerializeField] private string fileName;
+
     [SerializeField] GameObject player;
 
+    // TODO: this should be handled by the UIManager
     public GameObject pauseMenuUI;
 
     private void Awake() {
@@ -39,10 +40,6 @@ public class SaveManager : MonoBehaviour {
         
     }
 
-    public string getLastSceneName() {
-        return gameData.currentScene;
-    }
-
     public void NewGame() {
         this.gameData = new GameData();
     }
@@ -65,15 +62,16 @@ public class SaveManager : MonoBehaviour {
         }
 
         // load current scene
-        SceneManager.LoadScene(gameData.currentScene);
+        SceneManager.LoadScene(gameData.currentScene); // 
 
         // place a player at the spawn point
         GameObject p = Instantiate(player, gameData.playerPosition, Quaternion.identity);
         p.name = "Player";
 
         // enable UICanvas
+        
         GameObject.Find("UICanvas").GetComponent<Canvas>().enabled = true;
-        pauseMenuUI.SetActive(false);
+        pauseMenuUI.SetActive(false); // TODO: this should be handled by the UIManager
 
         // push the loaded data to all the scripts that need it
         foreach (ISaveable saveableObject in saveableObjects) {

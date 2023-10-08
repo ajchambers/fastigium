@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour, ISaveable {
-    public static GameManager gmInstance;
+public class GeneralManager : MonoBehaviour, ISaveable {
+    public static GeneralManager gmInstance;
+
+    // flags
     public bool isPlayerAlive = true;
 
     // saveable attributes
     public int deathCount;
     public static Vector3 respawnPoint;
-    
-    public void setRespawnPoint(Vector3 coords) {
+
+    // setters and getters    
+    public void SetRespawnPoint(Vector3 coords) {
         respawnPoint = coords;
     }
-    public Vector3 getRespawnPoint() {
+    public Vector3 GetRespawnPoint() {
         return respawnPoint;
     }
 
-    public int getDeathCount() {
+    public int GetDeathCount() {
         return deathCount;
     }
 
@@ -46,18 +49,18 @@ public class GameManager : MonoBehaviour, ISaveable {
         transform.localScale = new Vector2(0, 0);
         yield return new WaitForSeconds(duration);
         playerRb.transform.position = respawnPoint;
-        // transform.localScale = new Vector2 (0, 0);
+        // transform.localScale = newGeneralManager Vector2 (0, 0);
         playerRb.simulated = true;
         isPlayerAlive = true;
     }
 
     public void LoadData(GameData data) {
         this.deathCount = data.deathCount;
-        setRespawnPoint(data.respawnPoint);  
+        SetRespawnPoint(data.respawnPoint);  
     }
 
     public void SaveData(ref GameData data) {
         data.deathCount = this.deathCount;
-        data.respawnPoint = this.getRespawnPoint();
+        data.respawnPoint = this.GetRespawnPoint();
     }
 }

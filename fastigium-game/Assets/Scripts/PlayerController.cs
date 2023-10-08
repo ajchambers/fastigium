@@ -49,7 +49,7 @@ namespace TarodevController {
 
         public Vector3 playerPosition;
 
-        public Vector3 getPosition() {
+        public Vector3 GetPosition() {
             return transform.position;
         }
 
@@ -58,7 +58,7 @@ namespace TarodevController {
         }
 
         public void SaveData(ref GameData data) {
-            data.playerPosition = this.getPosition(); 
+            data.playerPosition = this.GetPosition(); 
         }
 
         public virtual void ApplyVelocity(Vector2 vel, PlayerForce forceType) {

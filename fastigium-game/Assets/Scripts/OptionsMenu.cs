@@ -25,10 +25,6 @@ public class OptionsMenu : MonoBehaviour {
         SceneManager.LoadScene("MainMenu");
     }
 
-    public void ClearSaveData() {
-        Debug.Log("Save data cleared.");
-    }
-
     // public void SetMusic (bool playMusic) {
     //     if (playMusic) {
     //         musicMixer.setFloat("musicVolume", 0.0f);
