@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TimeManager : MonoBehaviour
-{
+public class TimeManager : MonoBehaviour, IManager {
+    public static GeneralManager gmInstance;
+    public static SceneController scInstance;
+    public static SaveManager smInstance;
+    public static TimeManager tmInstance;
+    public static UIManager umInstance;
+
     public bool isTimeStopped;
     public int timeStopDuration;
     private Coroutine stopCo;
@@ -18,13 +23,25 @@ public class TimeManager : MonoBehaviour
     public Slider slider;
 
     void Awake() {
-        // set up UI
+         // set up UI
         pauseIcon = GameObject.Find("PauseIconImage").GetComponent<Image>();
         slider = GameObject.Find("CooldownTimer").GetComponent<Slider>();
 
         isTimeStopped = false;
         pauseIcon.enabled = false;
         canStopTime = true;
+    }
+
+    private void Start() {
+        LookForManagers();
+    }
+
+    public void LookForManagers() {
+        gmInstance = FindObjectOfType<GeneralManager>();
+        scInstance = FindObjectOfType<SceneController>();
+        smInstance = FindObjectOfType<SaveManager>();
+        tmInstance = this;
+        umInstance = FindObjectOfType<UIManager>();
     }
 
     void Update() {
@@ -41,7 +58,7 @@ public class TimeManager : MonoBehaviour
         }
 
         // if the player dies, continue time
-        if (!GeneralManager.gmInstance.isPlayerAlive) {
+        if (!gmInstance.isPlayerAlive) {
             ContinueTime();
         }
     }

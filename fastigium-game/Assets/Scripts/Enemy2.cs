@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy2 : MonoBehaviour {
+    TimeManager tmInstance;
+
     [Header("For Saving")]
     [SerializeField] private string id;
     public bool isDead;
@@ -39,13 +41,14 @@ public class Enemy2 : MonoBehaviour {
         enemyRB = GetComponent<Rigidbody2D>();
         initialYpos = transform.position.y;
         player = GameObject.Find("Player").transform;
+        tmInstance = FindObjectOfType<TimeManager>();
     }
 
     void FixedUpdate() {
         checkingWallLeft = Physics2D.OverlapCircle(wallCheckLeft.position, circleRadius, groundLayer);
         checkingWallRight = Physics2D.OverlapCircle(wallCheckRight.position, circleRadius, groundLayer);
 
-        if (!TimeIsStopped()) {
+        if (!tmInstance.isTimeStopped) {
             Hover();
             LookForPlayer();
 
@@ -134,7 +137,7 @@ public class Enemy2 : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    bool TimeIsStopped() { // TODO: should be handled by time manager
-        return GeneralManager.gmInstance.GetComponent<TimeManager>().isTimeStopped;
+    bool TimeIsStopped() {
+        return tmInstance.isTimeStopped;
     }
 }

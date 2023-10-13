@@ -4,57 +4,48 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour, ISaveable {
+    public static GeneralManager gmInstance;
     public static SceneController scInstance;
-    SaveManager sm;
+    public static SaveManager smInstance;
+    public static TimeManager tmInstance;
+    public static UIManager umInstance;
 
-    string currentScene;
+    public string currentScene;
 
     //public GameObject Player;
 
-    //top
-    // Vector3 sp11 = new Vector3 (-10.5f, 7.0f);
-    // Vector3 sp12 = new Vector3 (0f, 7.0f);
-    // Vector3 sp1 = new Vector3 (10.5f, 7.0f);
+    private void Start() {
+        LookForManagers();
+    }
 
-    // //right
-    // Vector3 sp2 = new Vector3 (17.25f, 6.0f);
-    // Vector3 sp3 = new Vector3 (17.25f, -1.0f);
-    // Vector3 sp4 = new Vector3 (17.25f, -9.0f);
-
-    // // bottom
-    // Vector3 sp5 = new Vector3 (12.5f, -9.0f);
-    // Vector3 sp6 = new Vector3 (2.5f, -9.0f);
-    // Vector3 sp7 = new Vector3 (-12.5f, -9.0f);
-
-    // // left
-    // Vector3 sp8 = new Vector3 (-17.25f, -9.0f);
-    // Vector3 sp9 = new Vector3 (-17.25f, -1.0f);
-    // Vector3 sp10 = new Vector3 (-17.25f, 6.0f);
-
-    private void Awake() {
-        if (scInstance == null) {
-            scInstance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
-
-        sm = (SaveManager)GeneralManager.gmInstance.GetComponent("SaveManager");
+    public void LookForManagers() {
+        gmInstance = FindObjectOfType<GeneralManager>();
+        scInstance = this;
+        smInstance = FindObjectOfType<SaveManager>();
+        tmInstance = FindObjectOfType<TimeManager>();
+        umInstance = FindObjectOfType<UIManager>();
     }
 
     public void NextLevel(string sceneName, Vector3 spawnPoint) {
+        // save data in pre transition scene
+        smInstance.SaveGame();
+
         // load the next scene
         SceneManager.LoadScene(sceneName);
 
         // update the current scene attribute
         SetCurrentScene(sceneName);
-        Debug.Log("Updated gameData.currentScene to: " + sceneName);
+
+        // load the level data
+        // smInstance.LoadLevel();
+
+        // save the current scene
+        smInstance.SaveGame();
+
+        // Debug.Log("SceneController's current scene name: " + this.currentScene);
 
         // move player to the correct point in the next level
         GameObject.FindWithTag("Player").transform.position = spawnPoint;
-
-        // save the game
-        sm.SaveGame();
     }
 
     public string GetCurrentScene() {
@@ -66,10 +57,10 @@ public class SceneController : MonoBehaviour, ISaveable {
     }
 
     public void LoadData(GameData data) {
-        this.currentScene = data.currentScene;
+        this.currentScene = data.currentScene; // TODO: here
     }
 
     public void SaveData(ref GameData data) {
-        data.currentScene = this.GetCurrentScene();
+        data.currentScene = this.GetCurrentScene(); // TODO: here
     }
 }

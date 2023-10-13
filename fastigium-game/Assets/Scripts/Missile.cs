@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Missile : MonoBehaviour {
+    TimeManager tmInstance;
     public Transform target;
 
     private Rigidbody2D rb;
@@ -14,13 +15,14 @@ public class Missile : MonoBehaviour {
     public Enemy2 enemy2;
 
     void Start() {
+        tmInstance = FindObjectOfType<TimeManager>();
         target = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         c = GetComponent<PolygonCollider2D>();
     }
 
     void FixedUpdate() {
-        if (!GeneralManager.gmInstance.GetComponent<TimeManager>().isTimeStopped) {
+        if (!tmInstance.isTimeStopped) {
             Vector2 direction = (Vector2)target.position - rb.position;
             direction.Normalize();
             float rotateAmount = Vector3.Cross(direction, transform.up).z;        

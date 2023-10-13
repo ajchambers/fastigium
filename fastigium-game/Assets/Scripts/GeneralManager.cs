@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GeneralManager : MonoBehaviour, ISaveable {
+public class GeneralManager : MonoBehaviour, ISaveable, IManager {
     public static GeneralManager gmInstance;
+    public static SceneController scInstance;
+    public static SaveManager smInstance;
+    public static TimeManager tmInstance;
+    public static UIManager umInstance;
 
     // flags
     public bool isPlayerAlive = true;
@@ -25,20 +29,22 @@ public class GeneralManager : MonoBehaviour, ISaveable {
         return deathCount;
     }
 
-    // keep the same game manager object throughout all levels
-    private void Awake() {
-        if (gmInstance == null) {
-            gmInstance = this;
-            DontDestroyOnLoad(gameObject);
-        } else {
-            Destroy(gameObject);
-        }
+    private void Start() {
+        LookForManagers();
+    }
+
+    public void LookForManagers() {
+        gmInstance = this;
+        scInstance = FindObjectOfType<SceneController>();
+        smInstance = FindObjectOfType<SaveManager>();
+        tmInstance = FindObjectOfType<TimeManager>();
+        umInstance = FindObjectOfType<UIManager>();
     }
 
     public void KillPlayer() {
         isPlayerAlive = false;
         deathCount++;
-        StartCoroutine(Respawn(1.0f));
+        StartCoroutine(Respawn(0.5f));
     }
 
     IEnumerator Respawn(float duration) {

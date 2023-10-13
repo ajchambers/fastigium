@@ -13,17 +13,19 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void Play() {
-        GeneralManager.gmInstance.GetComponent<SaveManager>().LoadGame();
+        SaveManager.smInstance.ResumeGame();
     }
 
     public void ClearSaveData(){
         string fullPath = Path.Combine(Application.persistentDataPath, "save.txt");
+
         try {
             File.Delete(fullPath);
         } catch (Exception e) {
             Debug.Log("Couldn't delete file at " + fullPath);
             Debug.Log(e);
         }
+        
         Debug.Log("Save data cleared.");
     }
 

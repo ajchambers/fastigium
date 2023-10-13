@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public class TimeBodyRewindable : MonoBehaviour
 {
     // for stopping time
-    private TimeManager timeManager;
+    private TimeManager tmInstance;
 
     public float TimeBeforeAffected; //The time after the object spawns until it will be affected by the timestop(for projectiles etc)
     private float TimeBeforeAffectedTimer;
@@ -36,11 +36,10 @@ public class TimeBodyRewindable : MonoBehaviour
     private bool isMoving;
     bool isRewinding = false;
 
-    // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        timeManager = GameObject.FindGameObjectWithTag("GeneralManager").GetComponent<TimeManager>();
+        tmInstance = FindObjectOfType<TimeManager>();
         TimeBeforeAffectedTimer = TimeBeforeAffected;
 
         t = transform;
@@ -56,7 +55,7 @@ public class TimeBodyRewindable : MonoBehaviour
             CanBeAffected = true; // Will be affected by timestop
         }
 
-        if(CanBeAffected && timeManager.isTimeStopped && !IsStopped){
+        if(CanBeAffected && tmInstance.isTimeStopped && !IsStopped){
             StopTime();
         }
 

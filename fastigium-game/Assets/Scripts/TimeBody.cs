@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 public class TimeBody : MonoBehaviour
 {
-    private TimeManager timeManager;
+    private TimeManager tmInstance;
 
     public float timeBeforeAffected; //The time after the object spawns until it will be affected by the timestop(for projectiles etc)
     private float timeBeforeAffectedTimer;
@@ -20,10 +20,9 @@ public class TimeBody : MonoBehaviour
     private bool canBeAffected;
     private bool isStopped;
 
-    // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody2D>();
-        timeManager = GameObject.FindGameObjectWithTag("GeneralManager").GetComponent<TimeManager>();
+        tmInstance = FindObjectOfType<TimeManager>();
         timeBeforeAffectedTimer = timeBeforeAffected;
 
         t = transform;
@@ -36,7 +35,7 @@ public class TimeBody : MonoBehaviour
             canBeAffected = true; // Will be affected by timestop
         }
 
-        if(canBeAffected && timeManager.isTimeStopped && !isStopped){
+        if(canBeAffected && tmInstance.isTimeStopped && !isStopped){
             StopTime();
         }
     }

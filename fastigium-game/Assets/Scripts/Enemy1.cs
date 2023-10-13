@@ -2,7 +2,9 @@ using UnityEngine;
 public class Enemy1 : MonoBehaviour, ISaveable {
     [Header("For Saving")]
     [SerializeField] private string id;
+
     public bool isDead;
+    public Vector3 position;
     private int skin;
 
     [ContextMenu("Generate guid for ID")]
@@ -42,9 +44,11 @@ public class Enemy1 : MonoBehaviour, ISaveable {
 
     private void Awake() {
         enemyRB = GetComponent<Rigidbody2D>(); 
-        Transform player = GameObject.Find("Player").transform;
-
         // enemyAnim = GetComponent<Animator>(); 
+    }
+
+    private void Start() {
+        Transform player = GameObject.Find("Player").transform;
     }
 
     void FixedUpdate() {
@@ -57,7 +61,7 @@ public class Enemy1 : MonoBehaviour, ISaveable {
         // AnimationController();
 
         // if time is not stopped
-        if (!GeneralManager.gmInstance.GetComponent<TimeManager>().isTimeStopped) {
+        if (!TimeManager.tmInstance.isTimeStopped) {
             if (canSeePlayer && isGrounded) {
                 JumpAttack();
             }
@@ -73,21 +77,48 @@ public class Enemy1 : MonoBehaviour, ISaveable {
 
     public void MarkAsDead() {
         this.isDead = true;
+        // Debug.Log(this + " is marked as dead.");
     }
 
     public void LoadData(GameData data) {
-        data.enemy1s.TryGetValue(id, out isDead);
+        // old
+        // data.enemy1s.TryGetValue(id, out isDead);
 
-        if (isDead) {
+        // if (isDead) {
+        //     gameObject.SetActive(false);
+        // }
+
+        // new
+        data.enemy1data.TryGetValue(id, out EnemyData ed);
+
+        if (ed.isDead) {
             gameObject.SetActive(false);
         }
+
+        this.transform.position = ed.position;
+        Debug.Log(id + " LOADED data: " + ed);
     }
 
     public void SaveData(ref GameData data) {
-        if (data.enemy1s.ContainsKey(id)) {
-            data.enemy1s.Remove(id);
+        // // old
+        // if (data.enemy1s.ContainsKey(id)) {
+        //     data.enemy1s.Remove(id);
+        // }
+        // data.enemy1s.Add(id, isDead);
+
+        // // new
+        EnemyData ed = new EnemyData(this.isDead, this.GetPosition(), this.skin);
+        Debug.Log(ed);
+
+        if (data.enemy1data.ContainsKey(id)) {
+            data.enemy1data.Remove(id);
         }
-        data.enemy1s.Add(id, isDead);
+        data.enemy1data.Add(id, ed);
+        // Debug.Log(id + " SAVED data: " + ed);
+    }
+
+    public Vector3 GetPosition() {
+        return transform.position;
     }
 
     void Petrolling() {

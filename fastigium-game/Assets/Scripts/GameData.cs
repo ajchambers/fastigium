@@ -9,7 +9,8 @@ public class GameData {
 
     public string currentScene;
     public Vector3 respawnPoint;
-    public SerializableDictionary <string, bool> enemy1s;
+    public SerializableDictionary <string, EnemyData> enemy1data;
+    public SerializableDictionary <string, EnemyData> enemy2data;
 
     // default game data when game starts
     public GameData() {
@@ -24,16 +25,9 @@ public class GameData {
         this.currentScene = "t0";
 
         // enemy1s
-        this.enemy1s = new SerializableDictionary<string, bool>();
+        this.enemy1data = new SerializableDictionary<string, EnemyData>();
 
         // enemy2s
-            // position
-            // whether it's dead
-
-        // platforms
-
-        // missiles
-
-        // dialogue
+        this.enemy2data = new SerializableDictionary<string, EnemyData>();
     }
 }

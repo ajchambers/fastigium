@@ -449,7 +449,6 @@ MonoBehaviour:
     m_Bits: 256
   canSeePlayer: 0
   isFrozen: 0
-  brain: {fileID: 8520470969667004474}
 --- !u!50 &8520470970610193053
 Rigidbody2D:
   serializedVersion: 4
@@ -483,7 +482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbcf454e9d3c0d49962c085cd283445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeBeforeAffected: 0
+  timeBeforeAffected: 0
 --- !u!70 &8520470970610193026
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

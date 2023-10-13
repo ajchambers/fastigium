@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour {
-    public static UIManager uiManagerInstance;
+public class UIManager : MonoBehaviour, IManager {
+    public static GeneralManager gmInstance;
+    public static SceneController scInstance;
+    public static SaveManager smInstance;
+    public static TimeManager tmInstance;
+    public static UIManager umInstance;
 
     // flags
     public static bool gameIsPaused = false;
@@ -12,10 +16,19 @@ public class UIManager : MonoBehaviour {
     public GameObject pauseMenuUI;
 
     private void Awake() {
+        LookForManagers();
         Canvas canvas =  GameObject.Find("UICanvas").GetComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.worldCamera = Camera.main;
         pauseMenuUI.SetActive(false);
+    }
+
+    public void LookForManagers() {
+        gmInstance = FindObjectOfType<GeneralManager>();
+        scInstance = FindObjectOfType<SceneController>();
+        smInstance = FindObjectOfType<SaveManager>();
+        tmInstance = FindObjectOfType<TimeManager>();
+        umInstance = this;
     }
 
     private void Update() {
@@ -32,6 +45,7 @@ public class UIManager : MonoBehaviour {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
+        smInstance.PrintSaveableObjectsList();
     }
 
     public void Resume() {
@@ -46,7 +60,7 @@ public class UIManager : MonoBehaviour {
         Time.timeScale = 1f;
 
         // save game
-        GeneralManager.gmInstance.GetComponent<SaveManager>().SaveGame();
+        smInstance.SaveGame();
         
         //(GameObject.Find("GeneralManager")).SetActive(false);
 
