@@ -16,13 +16,13 @@ public class GameData {
     public GameData() {
         // player controller info
         this.deathCount = 0;
-        this.playerPosition = new Vector3(13, -9, 0);
+        this.playerPosition = new Vector3(-15, -8, 0);
 
         // game manager info
-        this.respawnPoint = new Vector3(13, -9, 0);
+        this.respawnPoint = new Vector3(-15, -8, 0);
 
         // scene controller
-        this.currentScene = "t0";
+        this.currentScene = "p1s1";
 
         // enemy1s
         this.enemy1data = new SerializableDictionary<string, EnemyData>();

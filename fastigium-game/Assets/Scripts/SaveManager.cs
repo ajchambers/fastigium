@@ -51,19 +51,21 @@ public class SaveManager : MonoBehaviour, IManager {
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
         // FindAllSaveableObjects();
-
-    }
-
-    public void PrintSaveableObjectsList() {
-        Debug.Log("SaveManager's saveable objects:");
-        foreach (ISaveable saveableObject in saveableObjects) {
-            Debug.Log("     " + saveableObject);
+        if ((scene.name != "MainMenu") && (scene.name != "OptionsMenu")) {
+            // PrepareSceneObjects();
         }
     }
 
     public void OnSceneUnloaded(Scene scene) {
         if ((scene.name != "MainMenu") || (scene.name != "OptionsMenu")) {
             // this.saveableObjects = FindAllSaveableObjects();
+        }
+    }
+
+    public void PrintSaveableObjectsList() {
+        Debug.Log("SaveManager's saveable objects:");
+        foreach (ISaveable saveableObject in saveableObjects) {
+            Debug.Log("\n   " + saveableObject);
         }
     }
 
@@ -76,13 +78,21 @@ public class SaveManager : MonoBehaviour, IManager {
 
     public void PrepareSceneObjects() {
         this.saveableObjects = FindAllSaveableObjects();
+        PrintSaveableObjectsList();
         GiveDataToObjects(); // FOUND THE PROBLEM AREA
+    }
+
+    private List<ISaveable> FindAllSaveableObjects() {
+        IEnumerable<ISaveable> saveableObjects = FindObjectsOfType<MonoBehaviour>()
+            .OfType<ISaveable>();
+        return new List<ISaveable>(saveableObjects);
     }
 
     public void GiveDataToObjects() {
         // push the loaded data to all the scripts that need it
         foreach (ISaveable saveableObject in saveableObjects) {
             saveableObject.LoadData(gameData);
+            // Debug.Log("Gave data to " + saveableObject);
         }
     }
 
@@ -107,7 +117,7 @@ public class SaveManager : MonoBehaviour, IManager {
         GameObject p = Instantiate(player, gameData.playerPosition, Quaternion.identity);
         p.name = "Player";
 
-        // prepare scene objects
+        // // prepare scene objects
         PrepareSceneObjects();
 
         // enable UICanvas
@@ -115,13 +125,13 @@ public class SaveManager : MonoBehaviour, IManager {
         pauseMenuUI.SetActive(false);
     }
 
-    public void LoadLevel() {
-        PrepareSceneObjects();
-    }
-
     public void SaveGame() {
-        Debug.Log(SceneManager.GetActiveScene().name);
+        // Debug.Log(SceneManager.GetActiveScene().name);
         if ((SceneManager.GetActiveScene().name != "MainMenu") && (SceneManager.GetActiveScene().name != "OptionsMenu")) {
+
+            // update list of objects to save
+            this.saveableObjects = FindAllSaveableObjects();
+
             // pass gameData to other scripts so they can update it
             foreach (ISaveable saveableObject in saveableObjects) { // TODO: problem area
                 saveableObject.SaveData(ref gameData);
@@ -134,11 +144,5 @@ public class SaveManager : MonoBehaviour, IManager {
 
     private void OnApplicationQuit() {
             SaveGame();
-    }
-
-    private List<ISaveable> FindAllSaveableObjects() {
-        IEnumerable<ISaveable> saveableObjects = FindObjectsOfType<MonoBehaviour>()
-            .OfType<ISaveable>();
-        return new List<ISaveable>(saveableObjects);
     }
 }

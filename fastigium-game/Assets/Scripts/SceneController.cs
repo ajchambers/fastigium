@@ -36,11 +36,12 @@ public class SceneController : MonoBehaviour, ISaveable {
         // update the current scene attribute
         SetCurrentScene(sceneName);
 
-        // load the level data
-        // smInstance.LoadLevel();
+        // give data to objects
+        // smInstance.PrepareSceneObjects();
+        // Debug.Log("SceneController called smInstance.PrepareSceneObjects");
 
         // save the current scene
-        smInstance.SaveGame();
+        // smInstance.SaveGame();
 
         // Debug.Log("SceneController's current scene name: " + this.currentScene);
 

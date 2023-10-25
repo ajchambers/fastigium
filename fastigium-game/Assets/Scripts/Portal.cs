@@ -23,12 +23,12 @@ public class Portal : MonoBehaviour {
     // Vector3 sp9 = new Vector3 (-17.25f, -1.0f);
     // Vector3 sp10 = new Vector3 (-17.25f, 6.0f);
 
-    public string sceneName;
+    public string nextSceneName;
     public Vector3 spawnPoint;
 
     private void OnTriggerEnter2D(Collider2D collider) {
         if (collider.CompareTag("Player")) {
-            SceneController.scInstance.NextLevel(sceneName, spawnPoint);
+            SceneController.scInstance.NextLevel(nextSceneName, spawnPoint);
         }
     }
 }

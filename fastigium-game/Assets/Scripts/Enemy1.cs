@@ -43,7 +43,7 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     private Rigidbody2D enemyRB;
 
     private void Awake() {
-        enemyRB = GetComponent<Rigidbody2D>(); 
+        enemyRB = GetComponent<Rigidbody2D>();
         // enemyAnim = GetComponent<Animator>(); 
     }
 
@@ -95,7 +95,8 @@ public class Enemy1 : MonoBehaviour, ISaveable {
             gameObject.SetActive(false);
         }
 
-        this.transform.position = ed.position;
+        transform.position = ed.position;
+
         Debug.Log(id + " LOADED data: " + ed);
     }
 
@@ -108,13 +109,14 @@ public class Enemy1 : MonoBehaviour, ISaveable {
 
         // // new
         EnemyData ed = new EnemyData(this.isDead, this.GetPosition(), this.skin);
-        Debug.Log(ed);
+        // Debug.Log(ed);
 
         if (data.enemy1data.ContainsKey(id)) {
             data.enemy1data.Remove(id);
         }
+
         data.enemy1data.Add(id, ed);
-        // Debug.Log(id + " SAVED data: " + ed);
+        Debug.Log(id + " SAVED data: " + ed);
     }
 
     public Vector3 GetPosition() {
