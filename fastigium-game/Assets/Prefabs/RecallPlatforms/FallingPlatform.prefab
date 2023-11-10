@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 994982471746042880}
   - component: {fileID: 8283251287457481268}
   - component: {fileID: 8317993900133812432}
+  - component: {fileID: 3414824378152837430}
   m_Layer: 0
   m_Name: FallingPlatform
   m_TagString: FallingPlatform
@@ -149,7 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeBeforeAffected: 0
   recordTime: 10
-  sr: {fileID: 994982471746042886}
+  spriteRenderer: {fileID: 0}
   defaultColor: {r: 0, g: 0.28235295, b: 1, a: 1}
   hoverColor: {r: 0, g: 0.87843144, b: 1, a: 1}
   selectedColor: {r: 0, g: 1, b: 0.54709053, a: 0}
@@ -164,5 +165,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a87d5c84f9314d346bb3463b267b1528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3414824378152837430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 994982471746042884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0ee8547bb9c18c46b415666a18eeeab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy2 : MonoBehaviour {
+public class Enemy2 : MonoBehaviour, ISaveable {
     TimeManager tmInstance;
 
     [Header("For Saving")]
     [SerializeField] private string id;
     public bool isDead;
     private int skin;
+
+    [ContextMenu("Generate guid for ID")]
+    private void GenerateGuid() {
+        id = System.Guid.NewGuid().ToString();
+    }
 
     [Header("For Navigation")]
     [SerializeField] Transform wallCheckLeft;
@@ -19,7 +24,7 @@ public class Enemy2 : MonoBehaviour {
     private Rigidbody2D enemyRB;
     public bool checkingWallLeft;
     public bool checkingWallRight;
-    public bool facingRight;
+    public bool facingRight = true;
     private float moveDirection = 1;
     private float initialYpos;
 
@@ -37,7 +42,7 @@ public class Enemy2 : MonoBehaviour {
     public GameObject projectile;
     private Coroutine co;
  
-    void Start() {
+    void Awake() {
         enemyRB = GetComponent<Rigidbody2D>();
         initialYpos = transform.position.y;
         player = GameObject.Find("Player").transform;
@@ -63,6 +68,39 @@ public class Enemy2 : MonoBehaviour {
         }
     }
 
+    public void LoadData(GameData data) {
+        data.enemy2data.TryGetValue(id, out EnemyData ed);
+
+        if (ed != null) {
+            if (ed.isDead) {
+                gameObject.SetActive(false);
+            }
+
+            transform.position = ed.position;
+
+            if (!ed.facingRight) {
+                moveDirection *= -1;
+            }
+
+            hasFoundPlayer = ed.hasFoundPlayer;
+        }
+
+    }
+
+    public void SaveData(ref GameData data) {
+        EnemyData ed = new EnemyData(this.isDead, this.GetPosition(), this.initialYpos, this.facingRight, this.hasFoundPlayer, this.skin);
+        
+        if (data.enemy2data.ContainsKey(id)) {
+            data.enemy2data.Remove(id);
+        }
+
+        data.enemy2data.Add(id, ed);
+    }
+
+    public Vector3 GetPosition() {
+        return transform.position;
+    }
+
     void Hover() {
         Vector2 p = transform.position;
         p.y = hoverAmplitude * Mathf.Cos(Time.time * hoverSpeed) + initialYpos;
@@ -82,7 +120,9 @@ public class Enemy2 : MonoBehaviour {
     }
 
     void LookForPlayer() { 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayLength, (1 << LayerMask.NameToLayer("Player") | (1 << LayerMask.NameToLayer("Ground"))));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, rayLength, 
+            (1 << LayerMask.NameToLayer("Player") | (1 << LayerMask.NameToLayer("Ground"))));
+            
         Debug.DrawRay(transform.position, Vector2.down * rayLength, Color.red, 0);
         
         if (hit.collider != null) {
@@ -130,7 +170,9 @@ public class Enemy2 : MonoBehaviour {
     void Unlock() {
         hasFoundPlayer = false;
         hasMovedTowardPlayer = false;
-        StopCoroutine(co);
+
+        if (co != null)
+            StopCoroutine(co);
     }
 
     void Die() {

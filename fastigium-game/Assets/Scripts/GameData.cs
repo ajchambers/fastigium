@@ -9,6 +9,7 @@ public class GameData {
 
     public string currentScene;
     public Vector3 respawnPoint;
+
     public SerializableDictionary <string, EnemyData> enemy1data;
     public SerializableDictionary <string, EnemyData> enemy2data;
 
@@ -16,7 +17,7 @@ public class GameData {
     public GameData() {
         // player controller info
         this.deathCount = 0;
-        this.playerPosition = new Vector3(-15, -8, 0);
+        this.playerPosition = new Vector3(-15, -1, 0);
 
         // game manager info
         this.respawnPoint = new Vector3(-15, -8, 0);
@@ -29,5 +30,6 @@ public class GameData {
 
         // enemy2s
         this.enemy2data = new SerializableDictionary<string, EnemyData>();
+
     }
 }

@@ -12,13 +12,11 @@ public class Missile : MonoBehaviour {
     public float travelSpeed;
     public float rotateSpeed;
 
-    public Enemy2 enemy2;
-
     void Start() {
         tmInstance = FindObjectOfType<TimeManager>();
         target = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
-        c = GetComponent<PolygonCollider2D>();
+        c = GetComponent<PolygonCollider2D>();;
     }
 
     void FixedUpdate() {

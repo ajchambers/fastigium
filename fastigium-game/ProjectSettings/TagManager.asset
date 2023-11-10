@@ -11,6 +11,8 @@ TagManager:
   - Enemy1
   - Enemy2
   - GeneralManager
+  - GameManager
+  - OneWayPlatform
   layers:
   - Default
   - TransparentFX

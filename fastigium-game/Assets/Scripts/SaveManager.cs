@@ -19,6 +19,7 @@ public class SaveManager : MonoBehaviour, IManager {
     [SerializeField] private string fileName;
 
     [SerializeField] GameObject player;
+    [SerializeField] GameObject fallingPlatform;
 
     // TODO: this should be handled by the UIManager
     public GameObject pauseMenuUI;
@@ -50,36 +51,20 @@ public class SaveManager : MonoBehaviour, IManager {
     }
 
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
-        // FindAllSaveableObjects();
         if ((scene.name != "MainMenu") && (scene.name != "OptionsMenu")) {
-            // PrepareSceneObjects();
+            saveableObjects = FindAllSaveableObjects();
+            GiveDataToObjects();
+            scInstance.SetCurrentScene(SceneManager.GetActiveScene().name);
         }
     }
 
-    public void OnSceneUnloaded(Scene scene) {
-        if ((scene.name != "MainMenu") || (scene.name != "OptionsMenu")) {
-            // this.saveableObjects = FindAllSaveableObjects();
-        }
-    }
+    public void OnSceneUnloaded(Scene scene) {}
 
     public void PrintSaveableObjectsList() {
         Debug.Log("SaveManager's saveable objects:");
         foreach (ISaveable saveableObject in saveableObjects) {
             Debug.Log("\n   " + saveableObject);
         }
-    }
-
-    // public void TakeDataFromSceneObjects() {
-    //     this.saveableObjects = FindAllSaveableObjects();
-    //     foreach (ISaveable saveableObject in saveableObjects) {
-    //         saveableObject.SaveData(ref gameData);
-    //     }
-    // }
-
-    public void PrepareSceneObjects() {
-        this.saveableObjects = FindAllSaveableObjects();
-        PrintSaveableObjectsList();
-        GiveDataToObjects(); // FOUND THE PROBLEM AREA
     }
 
     private List<ISaveable> FindAllSaveableObjects() {
@@ -92,7 +77,6 @@ public class SaveManager : MonoBehaviour, IManager {
         // push the loaded data to all the scripts that need it
         foreach (ISaveable saveableObject in saveableObjects) {
             saveableObject.LoadData(gameData);
-            // Debug.Log("Gave data to " + saveableObject);
         }
     }
 
@@ -106,7 +90,6 @@ public class SaveManager : MonoBehaviour, IManager {
 
         // if there's no file, start a new one
         if (this.gameData == null){
-            // Debug.Log("No game data found. Initializing data to defaults.");
             NewGame();
         }
 
@@ -116,9 +99,12 @@ public class SaveManager : MonoBehaviour, IManager {
         // place a player at the spawn point
         GameObject p = Instantiate(player, gameData.playerPosition, Quaternion.identity);
         p.name = "Player";
+        
+        // set list of Saveable objects
+        this.saveableObjects = FindAllSaveableObjects();
 
-        // // prepare scene objects
-        PrepareSceneObjects();
+        // give data to those objects
+        GiveDataToObjects();
 
         // enable UICanvas
         GameObject.Find("UICanvas").GetComponent<Canvas>().enabled = true;
@@ -126,7 +112,6 @@ public class SaveManager : MonoBehaviour, IManager {
     }
 
     public void SaveGame() {
-        // Debug.Log(SceneManager.GetActiveScene().name);
         if ((SceneManager.GetActiveScene().name != "MainMenu") && (SceneManager.GetActiveScene().name != "OptionsMenu")) {
 
             // update list of objects to save
@@ -142,7 +127,12 @@ public class SaveManager : MonoBehaviour, IManager {
         }
     }
 
+    public void SaveObject(ISaveable g) {
+        g.SaveData(ref gameData);
+        fileHandler.Save(gameData);
+    }
+
     private void OnApplicationQuit() {
-            SaveGame();
+        SaveGame();
     }
 }

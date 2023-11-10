@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 8520470969667004474}
   - component: {fileID: 8520470969667004468}
   m_Layer: 0
-  m_Name: Vulnerable
+  m_Name: Brain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -429,6 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 
   isDead: 0
+  position: {x: 0, y: 0, z: 0}
   moveSpeed: 3
   groundCheckPoint: {fileID: 8520470969662850040}
   wallCheckPoint: {fileID: 8520470969411247112}
@@ -443,6 +444,7 @@ MonoBehaviour:
   groundCheck: {fileID: 8520470969249329479}
   boxSize: {x: 0.75, y: 0.1}
   isGrounded: 0
+  brain: {fileID: 8520470969667004474}
   lineOfSite: {x: 10, y: 1.5}
   playerLayer:
     serializedVersion: 2

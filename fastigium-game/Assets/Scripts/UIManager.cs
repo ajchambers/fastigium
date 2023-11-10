@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour, IManager {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
-        smInstance.PrintSaveableObjectsList();
+        //smInstance.PrintSaveableObjectsList();
     }
 
     public void Resume() {

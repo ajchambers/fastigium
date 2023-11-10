@@ -12,8 +12,6 @@ public class SceneController : MonoBehaviour, ISaveable {
 
     public string currentScene;
 
-    //public GameObject Player;
-
     private void Start() {
         LookForManagers();
     }
@@ -36,15 +34,6 @@ public class SceneController : MonoBehaviour, ISaveable {
         // update the current scene attribute
         SetCurrentScene(sceneName);
 
-        // give data to objects
-        // smInstance.PrepareSceneObjects();
-        // Debug.Log("SceneController called smInstance.PrepareSceneObjects");
-
-        // save the current scene
-        // smInstance.SaveGame();
-
-        // Debug.Log("SceneController's current scene name: " + this.currentScene);
-
         // move player to the correct point in the next level
         GameObject.FindWithTag("Player").transform.position = spawnPoint;
     }
@@ -58,7 +47,7 @@ public class SceneController : MonoBehaviour, ISaveable {
     }
 
     public void LoadData(GameData data) {
-        this.currentScene = data.currentScene; // TODO: here
+        // this.currentScene = data.currentScene; // TODO: here
     }
 
     public void SaveData(ref GameData data) {

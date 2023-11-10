@@ -1,8 +1,8 @@
 using UnityEngine;
+
 public class Enemy1 : MonoBehaviour, ISaveable {
     [Header("For Saving")]
     [SerializeField] private string id;
-
     public bool isDead;
     public Vector3 position;
     private int skin;
@@ -29,6 +29,9 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     [SerializeField] Transform groundCheck;
     [SerializeField] Vector2 boxSize;
     public bool isGrounded;
+
+    [Header("For Dying")]
+    [SerializeField] CircleCollider2D brain;
 
     [Header("For SeeingPlayer")]
     [SerializeField] Vector2 lineOfSite;
@@ -71,52 +74,40 @@ public class Enemy1 : MonoBehaviour, ISaveable {
         }
     }
 
-    private void OnDisable() {
-        MarkAsDead();
-    }
-
-    public void MarkAsDead() {
-        this.isDead = true;
-        // Debug.Log(this + " is marked as dead.");
-    }
-
     public void LoadData(GameData data) {
-        // old
-        // data.enemy1s.TryGetValue(id, out isDead);
-
-        // if (isDead) {
-        //     gameObject.SetActive(false);
-        // }
-
-        // new
         data.enemy1data.TryGetValue(id, out EnemyData ed);
 
-        if (ed.isDead) {
-            gameObject.SetActive(false);
+        if (ed != null) {
+            if (ed.isDead) {
+                gameObject.SetActive(false);
+            }
+
+            transform.position = ed.position;
+
+            if (!ed.facingRight) {
+                Flip();
+            }
         }
-
-        transform.position = ed.position;
-
-        Debug.Log(id + " LOADED data: " + ed);
     }
 
     public void SaveData(ref GameData data) {
-        // // old
-        // if (data.enemy1s.ContainsKey(id)) {
-        //     data.enemy1s.Remove(id);
-        // }
-        // data.enemy1s.Add(id, isDead);
-
-        // // new
-        EnemyData ed = new EnemyData(this.isDead, this.GetPosition(), this.skin);
-        // Debug.Log(ed);
-
+        EnemyData ed = new EnemyData(this.isDead, this.GetPosition(), this.facingRight, this.skin);
+        
         if (data.enemy1data.ContainsKey(id)) {
             data.enemy1data.Remove(id);
         }
 
         data.enemy1data.Add(id, ed);
-        Debug.Log(id + " SAVED data: " + ed);
+    }
+
+    public void Die() {
+        gameObject.SetActive(false);
+        MarkAsDead();
+    }
+
+    public void MarkAsDead() {
+        isDead = true;
+        SaveManager.smInstance.SaveObject(this);
     }
 
     public Vector3 GetPosition() {

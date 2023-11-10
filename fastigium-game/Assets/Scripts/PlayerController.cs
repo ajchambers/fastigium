@@ -54,7 +54,7 @@ namespace TarodevController {
         }
 
         public void LoadData(GameData data) {
-            transform.position = data.playerPosition;
+            // transform.position = data.playerPosition;
         }
 
         public void SaveData(ref GameData data) {
