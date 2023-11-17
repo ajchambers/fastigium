@@ -14,7 +14,6 @@ namespace TarodevController {
 
         [HideInInspector] private Rigidbody2D _rb; // Hide is for serialization to avoid errors in gizmo calls
         [SerializeField] private CapsuleCollider2D _standingCollider;
-        [SerializeField] private CapsuleCollider2D _crouchingCollider;
         private CapsuleCollider2D _col; // current active collider
         private PlayerInput _input;
         private bool _cachedTriggerSetting;
@@ -42,7 +41,6 @@ namespace TarodevController {
         public Vector2 Speed => _speed; // + _currentExternalVelocity; // we should add this, right?
         public Vector2 GroundNormal { get; private set; }
         public int WallDirection { get; private set; }
-        public bool Crouching { get; private set; }
         public bool ClimbingLadder { get; private set; }
         public bool GrabbingLedge { get; private set; }
         public bool ClimbingLedge { get; private set; }
@@ -96,8 +94,7 @@ namespace TarodevController {
             _input = GetComponent<PlayerInput>();
             _cachedTriggerSetting = Physics2D.queriesHitTriggers;
             Physics2D.queriesStartInColliders = false;
-
-            ToggleColliders(isStanding: true);
+            _col = _standingCollider;
         }
 
         protected virtual void Update() {
@@ -133,7 +130,6 @@ namespace TarodevController {
             HandleLedges();
             HandleLadders();
 
-            HandleCrouching();
             HandleJump();
             HandleDash();
             HandleAttacking();
@@ -214,7 +210,6 @@ namespace TarodevController {
         }
 
         protected virtual bool IsStandingPosClear(Vector2 pos) => CheckPos(pos, _standingCollider);
-        protected virtual bool IsCrouchingPosClear(Vector2 pos) => CheckPos(pos, _crouchingCollider);
 
         protected virtual bool CheckPos(Vector2 pos, CapsuleCollider2D col) {
             Physics2D.queriesHitTriggers = false;
@@ -277,7 +272,6 @@ namespace TarodevController {
         #region Ledges
 
         private Vector2 _ledgeCornerPos;
-        private bool _climbIntoCrawl;
 
         protected virtual bool LedgeClimbInputDetected => Input.y > _stats.VerticalDeadzoneThreshold || Input.x == WallDirection;
 
@@ -320,12 +314,7 @@ namespace TarodevController {
                 var finalPos = _ledgeCornerPos + Vector2.Scale(_stats.StandUpOffset, new(WallDirection, 1f));
                 
                 if (IsStandingPosClear(finalPos)) {
-                    _climbIntoCrawl = false;
                     StartLedgeClimb();
-                }
-                else if (_stats.AllowCrouching && IsCrouchingPosClear(finalPos)) {
-                    _climbIntoCrawl = true;
-                    StartLedgeClimb(intoCrawl: true);
                 }
             }
         }
@@ -340,7 +329,6 @@ namespace TarodevController {
 
         public virtual void TeleportMidLedgeClimb() {
             transform.position = _rb.position = _ledgeCornerPos + Vector2.Scale(_stats.StandUpOffset, new(WallDirection, 1f));
-            if (_climbIntoCrawl) TryToggleCrouching(shouldCrouch: true);
             ToggleOnWall(false);
         }
 
@@ -391,37 +379,6 @@ namespace TarodevController {
 
         #endregion
 
-        #region Crouching
-
-        private int _frameStartedCrouching;
-
-        protected virtual bool CrouchPressed => FrameInput.Move.y < -_stats.VerticalDeadzoneThreshold;
-        protected virtual bool CanStand => IsStandingPosClear(_rb.position + new Vector2(0, _stats.CrouchBufferCheck));
-
-        protected virtual void HandleCrouching() {
-            if (!_stats.AllowCrouching) return;
-
-            if (!Crouching && CrouchPressed && _grounded) TryToggleCrouching(true);
-            else if (Crouching && (!CrouchPressed || !_grounded)) TryToggleCrouching(false);
-        }
-
-        protected virtual bool TryToggleCrouching(bool shouldCrouch) {
-            if (Crouching && !CanStand) return false;
-
-            Crouching = shouldCrouch;
-            ToggleColliders(!shouldCrouch);
-            if (Crouching) _frameStartedCrouching = _fixedFrame;
-            return true;
-        }
-
-        protected virtual void ToggleColliders(bool isStanding) {
-            _col = isStanding ? _standingCollider : _crouchingCollider;
-            _standingCollider.enabled = isStanding;
-            _crouchingCollider.enabled = !isStanding;
-        }
-
-        #endregion
-
         #region Jumping
 
         private bool _jumpToConsume;
@@ -451,7 +408,6 @@ namespace TarodevController {
 
         // Includes Ladder Jumps
         protected virtual void NormalJump() {
-            if (Crouching && !TryToggleCrouching(false)) return; // try standing up first so we don't get stuck in low ceilings
             _endedJumpEarly = false;
             _frameJumpWasPressed = 0; // prevents double-dipping 1 input's jumpToConsume and buffered jump for low ceilings
             _bufferedJumpUsable = false;
@@ -500,7 +456,7 @@ namespace TarodevController {
         private float _nextDashTime;
 
         protected virtual void HandleDash() {
-            if (_dashToConsume && _canDash && !Crouching && Time.time > _nextDashTime) {
+            if (_dashToConsume && _canDash && Time.time > _nextDashTime) {
                 var dir = new Vector2(FrameInput.Move.x, Mathf.Max(FrameInput.Move.y, 0f)).normalized;
                 if (dir == Vector2.zero) {
                     _dashToConsume = false;
@@ -570,12 +526,7 @@ namespace TarodevController {
                 var deceleration = _grounded ? _stats.GroundDeceleration * (_stickyFeet ? _stats.StickyFeetMultiplier : 1) : _stats.AirDeceleration;
                 _speed.x = Mathf.MoveTowards(_speed.x, 0, deceleration * Time.fixedDeltaTime);
             }
-            // Crawling
-            else if (Crouching && _grounded) {
-                var crouchPoint = Mathf.InverseLerp(0, _stats.CrouchSlowdownFrames, _fixedFrame - _frameStartedCrouching);
-                var diminishedMaxSpeed = _stats.MaxSpeed * Mathf.Lerp(1, _stats.CrouchSpeedPenalty, crouchPoint);
-                _speed.x = Mathf.MoveTowards(_speed.x, FrameInput.Move.x * diminishedMaxSpeed, _stats.GroundDeceleration * Time.fixedDeltaTime);
-            }
+
             // Regular Horizontal Movement
             else {
                 // Prevent useless horizontal speed buildup when against a wall
@@ -661,7 +612,6 @@ namespace TarodevController {
         private void OnValidate() {
             if (_stats == null) Debug.LogWarning("Please assign a ScriptableStats asset to the Player Controller's Stats slot", this);
             if (_standingCollider == null) Debug.LogWarning("Please assign a Capsule Collider to the Standing Collider slot", this);
-            if (_crouchingCollider == null) Debug.LogWarning("Please assign a Capsule Collider to the Crouching Collider slot", this);
             if (_rb == null && !TryGetComponent(out _rb)) Debug.LogWarning("Ensure the GameObject with the Player Controller has a Rigidbody2D", this);
         }
 #endif
@@ -686,7 +636,6 @@ namespace TarodevController {
         public Vector2 Velocity { get; }
         public Vector2 GroundNormal { get; }
         public int WallDirection { get; }
-        public bool Crouching { get; }
         public bool ClimbingLadder { get; }
         public bool GrabbingLedge { get; }
         public bool ClimbingLedge { get; }

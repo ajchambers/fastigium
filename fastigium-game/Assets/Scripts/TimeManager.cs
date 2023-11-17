@@ -85,7 +85,9 @@ public class TimeManager : MonoBehaviour, IManager {
         }
         
         // initiate cooldown
-        cooldownCo = StartCoroutine(Cooldown());
+        if (cooldownCo == null) {
+            cooldownCo = StartCoroutine(Cooldown());
+        }
     }
 
     IEnumerator StopTime() {
@@ -114,6 +116,7 @@ public class TimeManager : MonoBehaviour, IManager {
             slider.value = progress;
         }
         canStopTime = true;
+        cooldownCo = null;
     }
 
     

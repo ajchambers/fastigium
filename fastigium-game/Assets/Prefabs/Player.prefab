@@ -247,6 +247,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3836054527727189972, guid: f70c62151281a3349a1456d2cbfe6fc3, type: 3}
+      propertyPath: _crouchingCollider
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3836054527727189973, guid: f70c62151281a3349a1456d2cbfe6fc3, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3836054527727189974, guid: f70c62151281a3349a1456d2cbfe6fc3, type: 3}
       propertyPath: m_Size.y
       value: 1.3546113
@@ -311,7 +319,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3836054527727189971, guid: f70c62151281a3349a1456d2cbfe6fc3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f70c62151281a3349a1456d2cbfe6fc3, type: 3}
 --- !u!4 &657464700301058484 stripped
 Transform:

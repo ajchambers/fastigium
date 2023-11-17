@@ -3,14 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[System.Serializable]
 public class FallingPlatform : MonoBehaviour {
-    public string id;
     public Spawner spawner;
-
+    private string direction;
+    private float speed;
 
     private void Awake() {
-        GetClosestSpawner();    
+        GetClosestSpawner();
+        SetDirection();
+        SetSpeed();
+    }
+
+    private void Update() {
+        if (!TimeManager.tmInstance.isTimeStopped) {
+            switch (direction) {
+                case "up":
+                    MoveUp();
+                    break;
+                case "down":
+                    MoveDown();
+                    break;
+                case "left":
+                    MoveLeft();
+                    break;
+                case "right":
+                    MoveRight();
+                    break;
+            }
+        }
+        
+        GetComponent<Rigidbody2D>().isKinematic = true;
+
+    }
+
+    private void MoveUp() {
+        transform.Translate(Vector2.up * speed * Time.deltaTime);
+    }
+
+    private void MoveDown() {
+        transform.Translate(Vector2.down * speed * Time.deltaTime);
+    }
+
+    private void MoveLeft() {
+        transform.Translate(Vector2.left * speed * Time.deltaTime);
+    }
+
+    private void MoveRight() {
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
     }
 
     public void GetClosestSpawner() {
@@ -36,8 +75,16 @@ public class FallingPlatform : MonoBehaviour {
         spawner = nearestSpawner;
     }
 
+    private void SetDirection() {
+        direction = spawner.GetDirection();
+    }
+
+    private void SetSpeed() {
+        speed = spawner.GetSpeed();
+    }
+
     private void OnDestroy() {
-        spawner.objectDestroyed();
+        spawner.ObjectDestroyed();
     }
 
 }

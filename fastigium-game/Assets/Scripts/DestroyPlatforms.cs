@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyPlatforms : MonoBehaviour {
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.CompareTag("FallingPlatform")) {
-            Destroy(collision.gameObject);
+    private void OnTriggerEnter2D(Collider2D col) {
+        if (col.gameObject.CompareTag("FallingPlatform")) {
+            Destroy(col.gameObject);
         }
     }
 }

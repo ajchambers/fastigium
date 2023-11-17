@@ -1400,6 +1400,10 @@ PrefabInstance:
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 1744260824}
+    - target: {fileID: 4827871060759568583, guid: 2fff7fa693a85c7409f2a3a92af247d2, type: 3}
+      propertyPath: timeStopDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4835845105520710716, guid: 2fff7fa693a85c7409f2a3a92af247d2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

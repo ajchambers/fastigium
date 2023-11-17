@@ -307,7 +307,6 @@ namespace TarodevController
                     }
                 }
 
-                if (_player.Crouching) return _player.Input.x == 0 || !_grounded ? Crouch : Crawl;
                 if (_landed) return LockState(Land, _landAnimDuration);
                 if (_jumpTriggered) return _wallJumped ? Backflip : Jump;
 
@@ -342,7 +341,6 @@ namespace TarodevController
 
         private static readonly int Idle = Animator.StringToHash("Idle");
         private static readonly int Walk = Animator.StringToHash("Walk");
-        private static readonly int Crouch = Animator.StringToHash("Crouch");
         private static readonly int Crawl = Animator.StringToHash("Crawl");
 
         private static readonly int Jump = Animator.StringToHash("Jump");

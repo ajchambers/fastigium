@@ -16,7 +16,6 @@ public class ToggleThroughPlatform : MonoBehaviour {
     void Update() {
         if (touching) {
             if (Input.GetKeyDown(KeyCode.S)) {
-                Debug.Log("S press detected.");
                 Physics2D.IgnoreCollision(pcol, col, true);
 
             } else if (Input.GetKeyUp(KeyCode.S)) {
@@ -25,25 +24,13 @@ public class ToggleThroughPlatform : MonoBehaviour {
         }
     }
 
-    // private void OnTriggerEnter2D(Collider2D other) {
-    //     if (other.gameObject.tag == "Player") {
-    //         touching = true;
-    //     }        
-    // }
-
-    // private void OnTriggerExit2D(Collider2D other) {
-    //     touching = false;
-    // }
-
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.tag == "Player") {
             touching = true;
-            Debug.Log("Touching player.");
         }
     }
 
-    private void OnCollisionStay2D(Collision2D other) {
+    private void OnCollisionExit2D(Collision2D other) {
         touching = false;
-        Debug.Log("Not touching player.");
     }
 }
