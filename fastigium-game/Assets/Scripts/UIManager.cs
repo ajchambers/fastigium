@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour, IManager {
     public static GeneralManager gmInstance;
@@ -14,6 +16,8 @@ public class UIManager : MonoBehaviour, IManager {
     public static bool gameIsPaused = false;
     
     public GameObject pauseMenuUI;
+    public TextMeshProUGUI scoreText;
+    public Button saveAndQuitButton;
 
     private void Awake() {
         LookForManagers();
@@ -39,12 +43,23 @@ public class UIManager : MonoBehaviour, IManager {
                 Pause();
             }
         }
+        UpdateScore();
+    }
+
+    public void UpdateScore() {
+        scoreText.SetText(gmInstance.score.ToString());
     }
 
     void Pause() {
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         gameIsPaused = true;
+        
+        if (smInstance.CanSave()) {
+            saveAndQuitButton.interactable = true;
+        } else {
+            saveAndQuitButton.interactable = false;
+        }
         //smInstance.PrintSaveableObjectsList();
     }
 

@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class FallingPlatform : MonoBehaviour {
     public Spawner spawner;
-    private string direction;
-    private float speed;
+    public string direction;
+    public float speed;
 
     private void Awake() {
         GetClosestSpawner();
@@ -31,9 +31,7 @@ public class FallingPlatform : MonoBehaviour {
                     break;
             }
         }
-        
         GetComponent<Rigidbody2D>().isKinematic = true;
-
     }
 
     private void MoveUp() {

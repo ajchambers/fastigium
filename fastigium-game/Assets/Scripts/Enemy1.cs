@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Enemy1 : MonoBehaviour, ISaveable {
     [Header("For Saving")]
@@ -6,6 +7,7 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     public bool isDead;
     public Vector3 position;
     private int skin;
+    public bool facingRight = true;
 
     [ContextMenu("Generate guid for ID")]
     private void GenerateGuid() {
@@ -15,13 +17,14 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     [Header("For Patrolling")]
     [SerializeField] float moveSpeed;
     private float moveDirection = 1;
-    private bool facingRight = true;
     [SerializeField] Transform groundCheckPoint;
     [SerializeField] Transform wallCheckPoint;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float circleRadius;
     public bool checkingGround;
     public bool checkingWall;
+    bool hasFlippedRecently = false;
+    bool canMove = true;
 
     [Header("For JumpAttacking")]
     [SerializeField] float jumpHeight;
@@ -41,11 +44,12 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     [Header("For Time Mechanic")]
     public bool isFrozen;
 
-    [Header("Other")]
     // private Animator enemyAnim;
     private Rigidbody2D enemyRB;
+    GeneralManager gm;
 
     private void Awake() {
+        gm = FindObjectOfType<GeneralManager>();
         enemyRB = GetComponent<Rigidbody2D>();
         // enemyAnim = GetComponent<Animator>(); 
     }
@@ -64,13 +68,17 @@ public class Enemy1 : MonoBehaviour, ISaveable {
         // AnimationController();
 
         // if time is not stopped
-        if (!TimeManager.tmInstance.isTimeStopped) {
+        if (!TimeManager.tmInstance.isTimeStopped && canMove) {
             if (canSeePlayer && isGrounded) {
                 JumpAttack();
             }
             if (!canSeePlayer && isGrounded) {
                 Petrolling();
             }   
+        }
+
+        if (transform.position.y < -12) {
+            MarkAsDead();
         }
     }
 
@@ -101,11 +109,18 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     }
 
     public void Die() {
-        gameObject.SetActive(false);
-        MarkAsDead();
+        canMove = false;
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().flipY = true;
+        GetComponent<Collider2D>().enabled = false;
+        Vector3 movement = new Vector3(Random.Range(40, 70), Random.Range(-40, 40), 0f);
+        transform.position += movement * Time.deltaTime;
+        GetComponent<Rigidbody2D>().gravityScale = 4;    
     }
 
     public void MarkAsDead() {
+        gm.AddPoints(50);
+        gameObject.SetActive(false);
         isDead = true;
         SaveManager.smInstance.SaveObject(this);
     }
@@ -151,10 +166,25 @@ public class Enemy1 : MonoBehaviour, ISaveable {
         transform.Rotate(0, 180, 0);
     }
 
+    IEnumerator FlipAndWait() {
+        Flip();
+        hasFlippedRecently = true;
+        yield return new WaitForSeconds(1);
+        hasFlippedRecently = false;
+    }
+
     // void AnimationController() {
     //     enemyAnim.SetBool("canSeePlayer", canSeePlayer);
     //     enemyAnim.SetBool("isGrounded", isGrounded);
     // }
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.GetComponent<Enemy1>() != null) {
+            if (!hasFlippedRecently) {
+                StartCoroutine(FlipAndWait());
+            }
+        }
+    }
 
     private void OnDrawGizmosSelected() {
         Gizmos.color = Color.blue;

@@ -111,8 +111,21 @@ public class SaveManager : MonoBehaviour, IManager {
         pauseMenuUI.SetActive(false);
     }
 
+    public bool CanSave() {
+        if ((SceneManager.GetActiveScene().name == "MainMenu"))
+            return false;
+
+        if ((SceneManager.GetActiveScene().name == "OptionsMenu"))
+            return false;
+
+        if (!gmInstance.isPlayerAlive)
+            return false;
+
+        return true;
+    }
+
     public void SaveGame() {
-        if ((SceneManager.GetActiveScene().name != "MainMenu") && (SceneManager.GetActiveScene().name != "OptionsMenu")) {
+        if (CanSave()) {
 
             // update list of objects to save
             this.saveableObjects = FindAllSaveableObjects();

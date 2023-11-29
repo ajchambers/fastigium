@@ -4,13 +4,19 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DialogueManager : MonoBehaviour {
+public class DialogueManager : MonoBehaviour, IManager {
     public static DialogueManager dmInstance;
+    public static GeneralManager gmInstance;
+    public static SceneController scInstance;
+    public static SaveManager smInstance;
+    public static TimeManager tmInstance;
+    public static UIManager umInstance;
 
     public Animator animator; 
 
     public TextMeshProUGUI nameText;
-    public TextMeshProUGUI dialogueText;   
+    public TextMeshProUGUI dialogueText;
+    public Image image;
 
     private Queue<string> sentences;
 
@@ -18,10 +24,19 @@ public class DialogueManager : MonoBehaviour {
         sentences = new Queue<string>();
     }
 
+    public void LookForManagers() {
+        gmInstance = FindObjectOfType<GeneralManager>();
+        scInstance = FindObjectOfType<SceneController>();
+        smInstance = FindObjectOfType<SaveManager>();
+        tmInstance = FindObjectOfType<TimeManager>();
+        umInstance = FindObjectOfType<UIManager>();
+    }
+
     public void StartDialogue(Dialogue dialogue) {
         animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;
+        image = dialogue.image;
 
         sentences.Clear();
 
@@ -30,6 +45,10 @@ public class DialogueManager : MonoBehaviour {
         }
 
         DisplayNextSentence();
+    }
+
+    public void EndDialogue() {
+        animator.SetBool("IsOpen", false);
     }
 
     public void DisplayNextSentence() {
@@ -50,9 +69,5 @@ public class DialogueManager : MonoBehaviour {
             dialogueText.text += letter;
             yield return null;
         }
-    }
-
-    void EndDialogue() {
-        animator.SetBool("IsOpen", false);
     }
 }

@@ -52,7 +52,9 @@ public class TimeBody : MonoBehaviour
     }
 
     public void ContinueTime() {
-        rb.isKinematic = false;
+        if (GetComponent<Coin>() == null)
+            rb.isKinematic = false;
+            
         isStopped = false;
         // rb.velocity = recordedVelocity * recordedMagnitude; //Adds back the recorded velocity when time continues
     }

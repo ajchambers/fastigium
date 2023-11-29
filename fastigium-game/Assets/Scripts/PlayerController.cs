@@ -417,6 +417,15 @@ namespace TarodevController {
             Jumped?.Invoke(false);
         }
 
+        public void JumpFromKill() {
+            _endedJumpEarly = false;
+            _frameJumpWasPressed = 0; // prevents double-dipping 1 input's jumpToConsume and buffered jump for low ceilings
+            _bufferedJumpUsable = false;
+            _coyoteUsable = false;
+            _speed.y = _stats.JumpPower;
+            Jumped?.Invoke(false);
+        }
+
         protected virtual void WallJump() {
             _endedJumpEarly = false;
             _bufferedJumpUsable = false;

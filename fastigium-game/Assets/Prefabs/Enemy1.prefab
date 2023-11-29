@@ -136,7 +136,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.2569139, g: 1, b: 0, a: 1}
   m_FlipX: 0
@@ -321,6 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ad12965f272b3a4eabb62fc3062864b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bounceFactor: 5
 --- !u!1 &8520470970610193027
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +431,7 @@ MonoBehaviour:
   id: 
   isDead: 0
   position: {x: 0, y: 0, z: 0}
+  facingRight: 1
   moveSpeed: 3
   groundCheckPoint: {fileID: 8520470969662850040}
   wallCheckPoint: {fileID: 8520470969411247112}

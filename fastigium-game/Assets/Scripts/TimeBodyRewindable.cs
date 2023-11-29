@@ -92,7 +92,9 @@ public class TimeBodyRewindable : MonoBehaviour
     }
 
     public void ContinueTime() {
-        rb.isKinematic = false;
+        if ((GetComponent<Enemy2>() != null) && (GetComponent<FallingPlatform>() != null)) {
+            rb.isKinematic = false;
+        }
         IsStopped = false;
         StopRewind();
         // rb.velocity = recordedVelocity * recordedMagnitude; //Adds back the recorded velocity when time continues

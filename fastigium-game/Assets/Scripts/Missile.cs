@@ -30,9 +30,17 @@ public class Missile : MonoBehaviour {
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if(collision.gameObject.name == "Player") {
+        GameObject g = collision.gameObject;
+
+        if(g.name == "Player") {
             GeneralManager.gmInstance.KillPlayer();
         }
+
+        if (g.GetComponent<Enemy2>() != null) {
+            Enemy2 e = g.GetComponent<Enemy2>();
+            e.Die();
+        }
+
         Explode();
     }
 

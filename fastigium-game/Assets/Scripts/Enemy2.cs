@@ -27,6 +27,7 @@ public class Enemy2 : MonoBehaviour, ISaveable {
     public bool facingRight = true;
     private float moveDirection = 1;
     private float initialYpos;
+    bool canMove = true;
 
     [Header("For Hovering")]
     public float hoverAmplitude;
@@ -41,8 +42,11 @@ public class Enemy2 : MonoBehaviour, ISaveable {
     public float lockSpeed;
     public GameObject projectile;
     private Coroutine co;
+
+    GeneralManager gm;
  
     void Awake() {
+        gm = FindObjectOfType<GeneralManager>();
         enemyRB = GetComponent<Rigidbody2D>();
         initialYpos = transform.position.y;
         player = GameObject.Find("Player").transform;
@@ -53,7 +57,17 @@ public class Enemy2 : MonoBehaviour, ISaveable {
         checkingWallLeft = Physics2D.OverlapCircle(wallCheckLeft.position, circleRadius, groundLayer);
         checkingWallRight = Physics2D.OverlapCircle(wallCheckRight.position, circleRadius, groundLayer);
 
-        if (!tmInstance.isTimeStopped) {
+        // if (tmInstance.isTimeStopped && co != null) {
+        //     StopCoroutine(co);
+        // }
+
+        if (tmInstance.isTimeStopped && !isDead) {
+            canMove = false;
+        } else {
+            canMove = true;
+        }
+
+        if (!tmInstance.isTimeStopped && canMove) {
             Hover();
             LookForPlayer();
 
@@ -66,6 +80,28 @@ public class Enemy2 : MonoBehaviour, ISaveable {
             }
             CheckIfPlayerIsAlive();
         }
+
+        if (transform.position.y < -12) {
+            MarkAsDead();
+        }
+    }
+
+    public void Die() {
+        isDead = true;
+        GetComponent<Obstacle>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        canMove = false;
+        GetComponent<Rigidbody2D>().isKinematic = false;
+        GetComponent<SpriteRenderer>().flipY = true;
+        Vector3 movement = new Vector3(Random.Range(40, 70), Random.Range(-40, 40), 0f);
+        transform.position += movement * Time.deltaTime;
+        GetComponent<Rigidbody2D>().gravityScale = 4;   
+    }
+
+    public void MarkAsDead() {
+        gm.AddPoints(100);
+        gameObject.SetActive(false);
+        SaveManager.smInstance.SaveObject(this);
     }
 
     public void LoadData(GameData data) {
@@ -84,7 +120,6 @@ public class Enemy2 : MonoBehaviour, ISaveable {
 
             hasFoundPlayer = ed.hasFoundPlayer;
         }
-
     }
 
     public void SaveData(ref GameData data) {
@@ -138,15 +173,19 @@ public class Enemy2 : MonoBehaviour, ISaveable {
         Shoot();
         yield return new WaitForSeconds(pauseDuration);
 
-        MoveTowardsPlayer();
+        if (canMove) {
+            MoveTowardsPlayer();
+        }
     }
 
     void MoveTowardsPlayer() {
-        Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
-        Vector2 destination = new Vector2(player.position.x, initialYpos);
-        float step = lockSpeed * Time.deltaTime * 1000;
-        transform.position = Vector2.MoveTowards(enemyPosition, destination, step);
-        hasMovedTowardPlayer = false;
+        if (canMove) {
+            Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
+            Vector2 destination = new Vector2(player.position.x, initialYpos);
+            float step = lockSpeed * Time.deltaTime * 1000;
+            transform.position = Vector2.MoveTowards(enemyPosition, destination, step);
+            hasMovedTowardPlayer = false;
+        }
     }
 
      private void OnTriggerEnter2D(Collider2D collision) {
@@ -173,10 +212,6 @@ public class Enemy2 : MonoBehaviour, ISaveable {
 
         if (co != null)
             StopCoroutine(co);
-    }
-
-    void Die() {
-        Destroy(gameObject);
     }
 
     bool TimeIsStopped() {
