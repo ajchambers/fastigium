@@ -4493,7 +4493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3985686073277728594, guid: 3e0fde17a9121f142843b306add4701a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13
+      value: 12.75
       objectReference: {fileID: 0}
     - target: {fileID: 3985686073277728594, guid: 3e0fde17a9121f142843b306add4701a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5264,7 +5264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3985686073277728594, guid: 3e0fde17a9121f142843b306add4701a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 10.25
       objectReference: {fileID: 0}
     - target: {fileID: 3985686073277728594, guid: 3e0fde17a9121f142843b306add4701a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5317,6 +5317,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3985686073277728594, guid: 3e0fde17a9121f142843b306add4701a, type: 3}
   m_PrefabInstance: {fileID: 1800902282}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1931315137
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: to jump farther, hold down spacebar longer.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022925, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_Name
+      value: Sign (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
 --- !u!1001 &1957027186
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5595,16 +5664,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
-      propertyPath: dialogue.icon
-      value: 
-      objectReference: {fileID: -1827944469, guid: 5707f5ebcf7e8b440bad2a949b2b5aab, type: 3}
+      propertyPath: dialogue.sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: move left and right with A and D.
+      value: move left and right with A and D and jump with spacebar.
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[1]
-      value: jump with spacebar.
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022925, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: m_Name

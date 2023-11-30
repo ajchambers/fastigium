@@ -1130,6 +1130,75 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5121028ae6587c84eace2858b7abfc32, type: 3}
+--- !u!1001 &704581367
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022912, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.sentences.Array.data[0]
+      value: you can double jump off of these special walls.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.sentences.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022925, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: m_Name
+      value: Sign (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
 --- !u!1 &754209397
 GameObject:
   m_ObjectHideFlags: 0
@@ -6737,12 +6806,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.sentences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
       value: you can jump off of and slide down special walls.
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[1]
-      value: don't forget that you can still double jump off of them.
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022925, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: m_Name

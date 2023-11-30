@@ -20,13 +20,13 @@ public class GameData {
     public GameData() {
         // player controller info
         this.deathCount = 0;
-        this.playerPosition = new Vector3(-8, -8, 0);
+        this.playerPosition = new Vector3(-16, -1, 0);
 
         // game manager info
         this.respawnPoint = new Vector3(-16, -1, 0);
 
         // scene controller
-        this.currentScene = "p1s9";
+        this.currentScene = "p1s1";
 
         // coins
         this.coinData = new SerializableDictionary<string, bool>();

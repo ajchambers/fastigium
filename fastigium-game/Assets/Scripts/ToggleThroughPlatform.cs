@@ -5,6 +5,7 @@ using UnityEngine;
 public class ToggleThroughPlatform : MonoBehaviour {
     BoxCollider2D col;
     CapsuleCollider2D pcol;
+    CapsuleCollider2D icol;
     bool touching = false;
 
     void Start() {

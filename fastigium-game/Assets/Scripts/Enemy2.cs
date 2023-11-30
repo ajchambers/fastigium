@@ -32,6 +32,7 @@ public class Enemy2 : MonoBehaviour, ISaveable {
     [Header("For Hovering")]
     public float hoverAmplitude;
     public float hoverSpeed;
+    public float phaseOffset;
 
     [Header("For Attacking")]
     public float rayLength;
@@ -49,6 +50,7 @@ public class Enemy2 : MonoBehaviour, ISaveable {
         gm = FindObjectOfType<GeneralManager>();
         enemyRB = GetComponent<Rigidbody2D>();
         initialYpos = transform.position.y;
+        SetOffset();
         player = GameObject.Find("Player").transform;
         tmInstance = FindObjectOfType<TimeManager>();
     }
@@ -136,9 +138,14 @@ public class Enemy2 : MonoBehaviour, ISaveable {
         return transform.position;
     }
 
+    private void SetOffset() {
+        System.Random random = new System.Random();
+        phaseOffset = random.Next(0, 100);
+    }
+
     void Hover() {
         Vector2 p = transform.position;
-        p.y = hoverAmplitude * Mathf.Cos(Time.time * hoverSpeed) + initialYpos;
+        p.y = hoverAmplitude * Mathf.Cos(Time.time * hoverSpeed + phaseOffset) + initialYpos;
         transform.position = p;
     }
 

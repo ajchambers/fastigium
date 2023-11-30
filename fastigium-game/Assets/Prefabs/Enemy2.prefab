@@ -116,8 +116,9 @@ MonoBehaviour:
   checkingWallLeft: 0
   checkingWallRight: 0
   facingRight: 0
-  hoverAmplitude: 0.5
+  hoverAmplitude: 0.6
   hoverSpeed: 5
+  phaseOffset: 0
   rayLength: 15
   hasFoundPlayer: 0
   hasMovedTowardPlayer: 0

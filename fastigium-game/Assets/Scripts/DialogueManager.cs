@@ -16,7 +16,7 @@ public class DialogueManager : MonoBehaviour, IManager {
 
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI dialogueText;
-    public Image image;
+    public Image iconImage;
 
     private Queue<string> sentences;
 
@@ -36,7 +36,13 @@ public class DialogueManager : MonoBehaviour, IManager {
         animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;
-        image = dialogue.image;
+
+        if (dialogue.icon != null) {
+            iconImage.sprite = dialogue.icon;
+            iconImage.enabled = true;
+        } else {
+            iconImage.enabled = false;
+        }
 
         sentences.Clear();
 

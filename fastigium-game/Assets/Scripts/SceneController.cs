@@ -9,6 +9,7 @@ public class SceneController : MonoBehaviour, ISaveable {
     public static SaveManager smInstance;
     public static TimeManager tmInstance;
     public static UIManager umInstance;
+    public static DialogueManager dmInstance;
 
     public string currentScene;
 
@@ -22,6 +23,7 @@ public class SceneController : MonoBehaviour, ISaveable {
         smInstance = FindObjectOfType<SaveManager>();
         tmInstance = FindObjectOfType<TimeManager>();
         umInstance = FindObjectOfType<UIManager>();
+        dmInstance = FindObjectOfType<DialogueManager>();
     }
 
     public void NextLevel(string sceneName, Vector3 spawnPoint) {
@@ -36,6 +38,9 @@ public class SceneController : MonoBehaviour, ISaveable {
 
         // move player to the correct point in the next level
         GameObject.FindWithTag("Player").transform.position = spawnPoint;
+
+        // if the dialogue box is on, turn it off
+        dmInstance.EndDialogue();
     }
 
     public string GetCurrentScene() {
