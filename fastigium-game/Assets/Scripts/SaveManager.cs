@@ -19,7 +19,6 @@ public class SaveManager : MonoBehaviour, IManager {
     [SerializeField] private string fileName;
 
     [SerializeField] GameObject player;
-    [SerializeField] GameObject fallingPlatform;
 
     // TODO: this should be handled by the UIManager
     public GameObject pauseMenuUI;

@@ -131,7 +131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fileName: 
   player: {fileID: 0}
-  fallingPlatform: {fileID: 0}
   pauseMenuUI: {fileID: 2815165588166962504}
 --- !u!1 &4029752681129155606
 GameObject:

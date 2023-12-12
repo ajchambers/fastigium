@@ -12,7 +12,6 @@ public class GameData {
     public Vector3 respawnPoint;
 
     public SerializableDictionary <string, bool> coinData;
-
     public SerializableDictionary <string, EnemyData> enemy1data;
     public SerializableDictionary <string, EnemyData> enemy2data;
 
