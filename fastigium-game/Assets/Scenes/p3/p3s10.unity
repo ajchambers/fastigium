@@ -2479,11 +2479,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3092529119595996787, guid: 705fd52869ce4b44aa08351285a90c67, type: 3}
       propertyPath: spawnPoint.x
-      value: -15
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3092529119595996787, guid: 705fd52869ce4b44aa08351285a90c67, type: 3}
+      propertyPath: spawnPoint.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3092529119595996787, guid: 705fd52869ce4b44aa08351285a90c67, type: 3}
       propertyPath: nextSceneName
-      value: p1s1
+      value: bedroom
       objectReference: {fileID: 0}
     - target: {fileID: 3092529119595996796, guid: 705fd52869ce4b44aa08351285a90c67, type: 3}
       propertyPath: m_RootOrder

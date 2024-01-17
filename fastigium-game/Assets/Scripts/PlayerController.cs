@@ -45,7 +45,10 @@ namespace TarodevController {
         public bool GrabbingLedge { get; private set; }
         public bool ClimbingLedge { get; private set; }
 
+        public event Action Died;
         public Vector3 playerPosition;
+
+        private GeneralManager gm;
 
         public Vector3 GetPosition() {
             return transform.position;
@@ -82,6 +85,8 @@ namespace TarodevController {
         #endregion
 
         protected virtual void Awake() {
+            gm = FindObjectOfType<GeneralManager>();
+        
             if (playerInstance == null) {
                 playerInstance = this;
                 DontDestroyOnLoad(gameObject);
@@ -98,7 +103,12 @@ namespace TarodevController {
         }
 
         protected virtual void Update() {
+            CheckIfPlayerIsAlive();
             GatherInput();
+        }
+
+        private void CheckIfPlayerIsAlive() {
+            _isDead = !gm.isPlayerAlive;
         }
 
         protected virtual void GatherInput() {
@@ -134,10 +144,23 @@ namespace TarodevController {
             HandleDash();
             HandleAttacking();
 
+            HandleDeath(); 
+
             HandleHorizontal();
             HandleVertical();
             ApplyMovement();
         }
+
+        #region Death
+        private bool _isDead;
+
+        protected virtual void HandleDeath() {
+            if (_isDead) {
+                Died?.Invoke();
+            }
+        }
+
+        #endregion
 
         #region Collisions
 
@@ -650,6 +673,9 @@ namespace TarodevController {
         public bool ClimbingLedge { get; }
         public void ApplyVelocity(Vector2 vel, PlayerForce forceType);
         public void SetVelocity(Vector2 vel, PlayerForce velocityType);
+
+        // my additions
+        public event Action Died;
     }
 
     public enum PlayerForce {

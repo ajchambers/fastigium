@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// FASTIGIUM
-
 namespace TarodevController
 {
     [RequireComponent(typeof(Animator), typeof(SpriteRenderer))]
@@ -22,6 +20,7 @@ namespace TarodevController
 
         private void Start()
         {
+            _player.Died += OnDeath;
             _player.GroundedChanged += OnGroundedChanged;
             _player.WallGrabChanged += OnWallGrabChanged;
             // _player.DashingChanged += OnDashingChanged;
@@ -75,10 +74,18 @@ namespace TarodevController
         public void PlayFootstepSound()
         {
             _stepIndex = (_stepIndex + 1) % _footstepClips.Length;
-            PlaySound(_footstepClips[_stepIndex], 0.01f);
+            PlaySound(_footstepClips[_stepIndex], 0.1f);
         }
 
         #endregion
+
+        #region Death
+
+        private float  _deathDuration = 1.6f;
+        private bool _isDead;
+
+        #endregion
+        private void OnDeath() => _isDead = true;
 
         #region Wall Sliding and Climbing
 
@@ -291,6 +298,8 @@ namespace TarodevController
             {
                 if (Time.time < _lockedTill) return _currentState;
 
+                if (_isDead) return LockState(Death, _deathDuration);
+
                 if (_isLedgeClimbing) return LockState(_climbIntoCrawl ? LedgeClimbIntoCrawl : LedgeClimb, _player.PlayerStats.LedgeClimbDuration);
                 if (_attacked) return LockState(Attack, _attackAnimTime);
                 if (_player.ClimbingLadder) return _player.Speed.y == 0 || _grounded ? ClimbIdle : Climb;
@@ -324,6 +333,7 @@ namespace TarodevController
 
             void ResetFlags()
             {
+                _isDead = false;
                 _jumpTriggered = false;
                 _landed = false;
                 _attacked = false;
@@ -339,6 +349,7 @@ namespace TarodevController
 
         private int _currentState;
 
+        private static readonly int Death = Animator.StringToHash("Death");
         private static readonly int Idle = Animator.StringToHash("Idle");
         private static readonly int Walk = Animator.StringToHash("Walk");
         private static readonly int Crawl = Animator.StringToHash("Crawl");

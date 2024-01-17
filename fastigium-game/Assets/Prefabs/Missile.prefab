@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1990042184338814205}
   - component: {fileID: 1990042184338814177}
   - component: {fileID: -1648056836524360982}
+  - component: {fileID: 1861181531156532745}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Missile
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.25882354, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.2627451, g: 0.2627451, b: 0.2627451, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,7 +125,6 @@ MonoBehaviour:
   target: {fileID: 0}
   travelSpeed: 10
   rotateSpeed: 500
-  enemy2: {fileID: 0}
 --- !u!60 &1990042184338814177
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -168,7 +168,102 @@ MonoBehaviour:
   TimeBeforeAffected: 0
   recordTime: 5
   spriteRenderer: {fileID: 0}
-  defaultColor: {r: 0.25882354, g: 1, b: 0, a: 1}
-  hoverColor: {r: 0, g: 1, b: 0.38120008, a: 1}
-  selectedColor: {r: 0, g: 0.9843137, b: 0.974369, a: 1}
-  recallColor: {r: 0, g: 0.34889346, b: 0.9764706, a: 1}
+  defaultColor: {r: 0.2627451, g: 0.2627451, b: 0.2627451, a: 1}
+  hoverColor: {r: 0.5411765, g: 0.5411765, b: 0.5411765, a: 1}
+  recallColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
+--- !u!82 &1861181531156532745
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1990042184338814202}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 81a8b9311492dd648a59bba5de7299c5, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.504
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

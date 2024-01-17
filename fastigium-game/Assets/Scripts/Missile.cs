@@ -11,12 +11,14 @@ public class Missile : MonoBehaviour {
 
     public float travelSpeed;
     public float rotateSpeed;
+    AudioSource s;
 
     void Start() {
         tmInstance = FindObjectOfType<TimeManager>();
         target = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
-        c = GetComponent<PolygonCollider2D>();;
+        c = GetComponent<PolygonCollider2D>();
+        s = GetComponent<AudioSource>();
     }
 
     void FixedUpdate() {
@@ -26,6 +28,10 @@ public class Missile : MonoBehaviour {
             float rotateAmount = Vector3.Cross(direction, transform.up).z;        
             rb.angularVelocity = -rotateAmount * rotateSpeed;
             rb.velocity = transform.up * travelSpeed;
+            s.mute = false;
+        } else {
+            rb.angularVelocity = 0;
+            s.mute = true;
         }
     }
 
@@ -40,11 +46,11 @@ public class Missile : MonoBehaviour {
             Enemy2 e = g.GetComponent<Enemy2>();
             e.Die();
         }
-
         Explode();
     }
 
     void Explode() {
+        FindObjectOfType<AudioManager>().Play("MissileExplosion");
         Destroy(gameObject);
     }
 }

@@ -10,6 +10,7 @@ public class GeneralManager : MonoBehaviour, ISaveable, IManager {
     public static TimeManager tmInstance;
     public static UIManager umInstance;
 
+    private float deathDuration = 1.0f;
     // flags
     public bool isPlayerAlive = true;
 
@@ -44,10 +45,11 @@ public class GeneralManager : MonoBehaviour, ISaveable, IManager {
     }
 
     public void KillPlayer() {
+        FindObjectOfType<AudioManager>().Play("PlayerDeath");
         isPlayerAlive = false;
         deathCount++;
         SubtractPoints(5);
-        StartCoroutine(Respawn(0.5f));
+        StartCoroutine(Respawn(deathDuration));
     }
 
     public void AddPoints(int points) {
@@ -63,14 +65,20 @@ public class GeneralManager : MonoBehaviour, ISaveable, IManager {
     }
 
     IEnumerator Respawn(float duration) {
-        Rigidbody2D playerRb = GameObject.FindWithTag("Player").GetComponent<Rigidbody2D>();
-        playerRb.velocity = new Vector2(0, 0);
-        playerRb.simulated = false;
+        GameObject player = GameObject.FindWithTag("Player");
+
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        SpriteRenderer sr = player.transform.GetChild(0).GetComponent<SpriteRenderer>();
+
+        rb.velocity = new Vector2(0, 0);
+        rb.simulated = false;
         transform.localScale = new Vector2(0, 0);
+
         yield return new WaitForSeconds(duration);
-        // transform.localScale = newGeneralManager Vector2 (0, 0);
-        playerRb.simulated = true;
-        playerRb.transform.position = respawnPoint;
+        FindObjectOfType<AudioManager>().Play("PlayerRespawn");
+
+        rb.simulated = true;
+        rb.transform.position = respawnPoint;
         isPlayerAlive = true;
     }
 

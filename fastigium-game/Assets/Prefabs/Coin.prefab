@@ -103,8 +103,8 @@ MonoBehaviour:
   id: 
   hoverSpeed: 5
   hoverAmplitude: 0.125
-  minColor: {r: 0, g: 1, b: 1, a: 1}
-  maxColor: {r: 0, g: 0.36862746, b: 1, a: 1}
+  minColor: {r: 0, g: 0.8381758, b: 1, a: 1}
+  maxColor: {r: 0, g: 0.4976437, b: 1, a: 1}
 --- !u!60 &3985686073277728597
 PolygonCollider2D:
   m_ObjectHideFlags: 0

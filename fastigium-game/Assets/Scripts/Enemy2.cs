@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class Enemy2 : MonoBehaviour, ISaveable {
     TimeManager tmInstance;
+    [Header("Important Bools and More")]
+    public bool isDead;
+    public bool canMove = true;
+    public bool hasFoundPlayer;
+    public bool shootAndMoveActive;
+    public bool canApproachPlayer = false;
+    public bool noticeSoundPlayed = false;
+    
+    public float waitToMove;
+    public float waitToShoot;
+    
+    public Vector2 target;
 
     [Header("For Saving")]
     [SerializeField] private string id;
-    public bool isDead;
     private int skin;
 
     [ContextMenu("Generate guid for ID")]
@@ -25,27 +36,26 @@ public class Enemy2 : MonoBehaviour, ISaveable {
     public bool checkingWallLeft;
     public bool checkingWallRight;
     public bool facingRight = true;
-    private float moveDirection = 1;
-    private float initialYpos;
-    bool canMove = true;
+    public float moveDirection = 1;
+    public float initialYpos;
+
+    public float distanceFromWall = 2;
 
     [Header("For Hovering")]
     public float hoverAmplitude;
     public float hoverSpeed;
-    public float phaseOffset;
+    private float phaseOffset;
 
     [Header("For Attacking")]
     public float rayLength;
-    public bool hasFoundPlayer;
-    public bool hasMovedTowardPlayer;
     private Transform player;
-    public float pauseDuration;
-    public float lockSpeed;
     public GameObject projectile;
-    private Coroutine co;
+    private Coroutine shootAndMoveRoutine;
 
     GeneralManager gm;
+    AudioSource s;
  
+    // set up general and time managers, rigidbody ref, hover phase offset, player ref
     void Awake() {
         gm = FindObjectOfType<GeneralManager>();
         enemyRB = GetComponent<Rigidbody2D>();
@@ -53,56 +63,81 @@ public class Enemy2 : MonoBehaviour, ISaveable {
         SetOffset();
         player = GameObject.Find("Player").transform;
         tmInstance = FindObjectOfType<TimeManager>();
+        s = GetComponent<AudioSource>();
     }
 
     void FixedUpdate() {
+        // check left and right for walls
         checkingWallLeft = Physics2D.OverlapCircle(wallCheckLeft.position, circleRadius, groundLayer);
         checkingWallRight = Physics2D.OverlapCircle(wallCheckRight.position, circleRadius, groundLayer);
 
-        // if (tmInstance.isTimeStopped && co != null) {
-        //     StopCoroutine(co);
-        // }
+        // determine states
+        DetermineIfCanMove();
+        CheckIfPlayerIsAlive();
 
-        if (tmInstance.isTimeStopped && !isDead) {
-            canMove = false;
+        if (tmInstance.isTimeStopped) {
+            s.mute = true;
         } else {
-            canMove = true;
+            s.mute = false;
         }
 
-        if (!tmInstance.isTimeStopped && canMove) {
+        // decide what to do based on those states
+        if (canMove) {
             Hover();
             LookForPlayer();
-
+            
             if (!hasFoundPlayer) {
                 MoveHorizontally();
+
             } else if (hasFoundPlayer) {
-                if (!hasMovedTowardPlayer) {
-                    co = StartCoroutine(LockOnPlayer());
+                if (canApproachPlayer) {
+                    MoveTowardsTarget();
                 }
+                if (!shootAndMoveActive) {
+                    shootAndMoveRoutine = StartCoroutine(ShootAndMove());
+                }
+                Hover();
             }
-            CheckIfPlayerIsAlive();
         }
 
         if (transform.position.y < -12) {
-            MarkAsDead();
+            gameObject.SetActive(false);
+        }
+    }
+   
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.CompareTag("Missile")) {
+            Die();
         }
     }
 
+    private void DetermineIfCanMove() {
+        // if time is stopped, can't move
+        if (tmInstance.isTimeStopped) {
+            canMove = false;
+            return;
+        }
+
+        // if enemy is dead, can't move
+        if (isDead) {
+            canMove = false;
+            return;
+        }
+
+        canMove = true;
+    }
     public void Die() {
+        s.mute = true;
+        FindObjectOfType<AudioManager>().Play("EnemyDeath");
         isDead = true;
         GetComponent<Obstacle>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
-        canMove = false;
         GetComponent<Rigidbody2D>().isKinematic = false;
         GetComponent<SpriteRenderer>().flipY = true;
         Vector3 movement = new Vector3(Random.Range(40, 70), Random.Range(-40, 40), 0f);
         transform.position += movement * Time.deltaTime;
-        GetComponent<Rigidbody2D>().gravityScale = 4;   
-    }
-
-    public void MarkAsDead() {
+        GetComponent<Rigidbody2D>().gravityScale = 4;
         gm.AddPoints(100);
-        gameObject.SetActive(false);
         SaveManager.smInstance.SaveObject(this);
     }
 
@@ -170,36 +205,58 @@ public class Enemy2 : MonoBehaviour, ISaveable {
         if (hit.collider != null) {
             if (hit.collider.gameObject.tag == "Player") {
                 hasFoundPlayer = true;
+                if (!noticeSoundPlayed) {
+                    FindObjectOfType<AudioManager>().Play("Enemy2NoticesPlayer");
+                    noticeSoundPlayed = true;
+                }
             }
         }
     }
 
-    IEnumerator LockOnPlayer() {
-        hasMovedTowardPlayer = true;
+    IEnumerator ShootAndMove() {
+        shootAndMoveActive = true;
         enemyRB.velocity = Vector2.zero;
         Shoot();
-        yield return new WaitForSeconds(pauseDuration);
+        FindObjectOfType<AudioManager>().Play("Shoot");
+        yield return new WaitForSeconds(waitToMove);
 
-        if (canMove) {
-            MoveTowardsPlayer();
+        canApproachPlayer = true;    
+        SetTarget();
+
+        yield return new WaitForSeconds(waitToShoot);
+        
+        canApproachPlayer = false;
+        shootAndMoveActive = false;
+    }
+
+    void SetTarget() {
+        Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
+        Vector2 destination = new Vector2(player.position.x, initialYpos);
+
+        string obstacleLayerName = "Ground";
+
+        LayerMask obstacleLayer = LayerMask.GetMask(obstacleLayerName);
+
+        // Check if there is an obstacle between the enemy and the player
+        RaycastHit2D hit = Physics2D.Raycast(enemyPosition, destination - enemyPosition, Vector2.Distance(enemyPosition, destination), obstacleLayer);
+
+        if (hit.collider == null) {
+            target = new Vector2(player.position.x, initialYpos);
+
+        } else {
+            // Calculate a new destination point based on the hit point from the raycast
+
+            float adjustment = Mathf.Sign(player.position.x - transform.position.x) * -1 * distanceFromWall;
+
+            target = new Vector2(hit.point.x + adjustment, initialYpos);
         }
     }
 
-    void MoveTowardsPlayer() {
-        if (canMove) {
-            Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
-            Vector2 destination = new Vector2(player.position.x, initialYpos);
-            float step = lockSpeed * Time.deltaTime * 1000;
-            transform.position = Vector2.MoveTowards(enemyPosition, destination, step);
-            hasMovedTowardPlayer = false;
-        }
+    void MoveTowardsTarget() {
+        Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y);
+        transform.position = Vector2.MoveTowards(enemyPosition, target, 1.0f);
     }
-
-     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Missile")) {
-            Die();
-        }
-    }
+    
 
     void Shoot() {
         Vector2 enemyPosition = new Vector2(transform.position.x, transform.position.y - 1.15f);
@@ -215,13 +272,10 @@ public class Enemy2 : MonoBehaviour, ISaveable {
 
     void Unlock() {
         hasFoundPlayer = false;
-        hasMovedTowardPlayer = false;
+        shootAndMoveActive = false;
+        noticeSoundPlayed = false;        
 
-        if (co != null)
-            StopCoroutine(co);
-    }
-
-    bool TimeIsStopped() {
-        return tmInstance.isTimeStopped;
+        if (shootAndMoveRoutine != null)
+            StopCoroutine(shootAndMoveRoutine);
     }
 }

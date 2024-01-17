@@ -3715,8 +3715,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: if this creature starts shooting, you can stop time and rewind its bullets
-        to kill it.
+      value: you can stop time and rewind this creature's bullets to kill it.
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022925, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: m_Name

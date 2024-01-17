@@ -22,6 +22,9 @@ public class TimeManager : MonoBehaviour, IManager {
     public Image pauseIcon;
     public Slider slider;
 
+    public bool somethingIsRewinding;
+    AudioSource s;
+
     void Awake() {
          // set up UI
         pauseIcon = GameObject.Find("PauseIconImage").GetComponent<Image>();
@@ -30,6 +33,7 @@ public class TimeManager : MonoBehaviour, IManager {
         isTimeStopped = false;
         pauseIcon.enabled = false;
         canStopTime = true;
+        s = GetComponent<AudioSource>();
     }
 
     private void Start() {
@@ -61,9 +65,18 @@ public class TimeManager : MonoBehaviour, IManager {
         if (!gmInstance.isPlayerAlive) {
             ContinueTime();
         }
+
+        if (somethingIsRewinding) {
+            s.mute = false;
+        } else {
+            s.mute = true;
+        }
     }
 
     public void ContinueTime() {
+        if (isTimeStopped)
+            FindObjectOfType<AudioManager>().Play("TimeResume");
+
         isTimeStopped = false;
         pauseIcon.enabled = false;
         
@@ -91,6 +104,7 @@ public class TimeManager : MonoBehaviour, IManager {
     }
 
     IEnumerator StopTime() {
+        FindObjectOfType<AudioManager>().Play("TimeStop");
         isTimeStopped = true;
         pauseIcon.enabled = true;
 

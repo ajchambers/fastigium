@@ -58,6 +58,7 @@ public class Coin : MonoBehaviour, ISaveable {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.name == "Player") {
+            FindObjectOfType<AudioManager>().Play("CollectCoin");
             gm.AddPoints(10);
             hasBeenCollected = true;
             gameObject.SetActive(false);

@@ -109,6 +109,7 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     }
 
     public void Die() {
+        FindObjectOfType<AudioManager>().Play("EnemyDeath");
         canMove = false;
         GetComponent<Collider2D>().enabled = false;
         GetComponent<SpriteRenderer>().flipY = true;
@@ -147,6 +148,7 @@ public class Enemy1 : MonoBehaviour, ISaveable {
         float distanceFromPlayer = player.position.x - transform.position.x;
 
         if (isGrounded) {
+            FindObjectOfType<AudioManager>().Play("Enemy1Jump");
             enemyRB.AddForce(new Vector2(distanceFromPlayer, jumpHeight), ForceMode2D.Impulse);
         }
     }

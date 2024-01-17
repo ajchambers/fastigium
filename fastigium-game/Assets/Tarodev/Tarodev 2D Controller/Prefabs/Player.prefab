@@ -4982,34 +4982,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99183cc6c8623374fa38c5f93e5f76db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveParticles: {fileID: 0}
-  _tiltChangeSpeed: 0.05
-  _maxTiltAngle: 45
   _footstepClips:
   - {fileID: 8300000, guid: 2113f34717365ed4d9616fe3402bd43c, type: 3}
   - {fileID: 8300000, guid: 3db7790641583ba4ca4fc1fe33ed2fb3, type: 3}
   _wallHitAnimTime: 0.2
-  _wallSlideParticles: {fileID: 0}
   _wallSlideSource: {fileID: 0}
   _wallClimbClips:
   - {fileID: 8300000, guid: be5f0f8c427cac44e8387eef0a889fa5, type: 3}
   - {fileID: 8300000, guid: 3f6ea2c296043f0439d1508b8f7605e1, type: 3}
   _maxWallSlideVolume: 0.2
   _wallSlideVolumeSpeed: 0.6
-  _wallSlideParticleOffset: 0.3
   _ladderClips:
   - {fileID: 8300000, guid: 4c990be3367ff04498b7cb54e948e244, type: 3}
   - {fileID: 8300000, guid: a3d5971d8fe70fe4dad7904bbf632dfb, type: 3}
-  _dashClip: {fileID: 8300000, guid: 6d2d16f85c087ea419d323141cd2145c, type: 3}
-  _dashParticles: {fileID: 0}
-  _dashRingParticles: {fileID: 0}
-  _dashRingTransform: {fileID: 0}
+  _minImpactForce: 20
+  _maxImpactForce: 40
   _landAnimDuration: 0.1
   _landClip: {fileID: 8300000, guid: f2433d011280e17498820544628ee930, type: 3}
   _jumpClip: {fileID: 8300000, guid: 101dc2feac7449645b4a53d89f9541f9, type: 3}
   _doubleJumpClip: {fileID: 8300000, guid: 0d11fd7368b306b4c900241e3dadf28f, type: 3}
   _doubleJumpParticles: {fileID: 3836054526829672068}
-  _jumpParticlesParent: {fileID: 0}
   _attackAnimTime: 0.2
   _attackClip: {fileID: 8300000, guid: b8093fb3a7eb8f74a878bb9da5af0a7a, type: 3}
 --- !u!212 &3836054527376998748
@@ -5193,7 +5185,6 @@ GameObject:
   - component: {fileID: 3836054527727189970}
   - component: {fileID: 3836054527727189973}
   - component: {fileID: 3836054527727189974}
-  - component: {fileID: 3836054527727189971}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -5231,7 +5222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stats: {fileID: 11400000, guid: 8f3e4ac96e9fac84e96172956137e1c4, type: 2}
   _standingCollider: {fileID: 3836054527727189974}
-  _crouchingCollider: {fileID: 3836054527727189971}
+  playerPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &3836054527727189970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5281,19 +5272,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.75}
   m_Size: {x: 0.6, y: 1.5}
   m_Direction: 0
---- !u!70 &3836054527727189971
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3836054527727189976}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.25}
-  m_Size: {x: 1.08, y: 0.5}
-  m_Direction: 1

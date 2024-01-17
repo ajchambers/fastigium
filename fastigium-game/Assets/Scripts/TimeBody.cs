@@ -52,9 +52,11 @@ public class TimeBody : MonoBehaviour
     }
 
     public void ContinueTime() {
-        if (GetComponent<Coin>() == null)
+        // if the TimeBodyRewind object is not an Enemy2 or a coin, make its rigidbody NOT kinematic
+        if ((GetComponent<Enemy2>() == null) && (GetComponent<Coin>() == null)) {
             rb.isKinematic = false;
-            
+        }
+
         isStopped = false;
         // rb.velocity = recordedVelocity * recordedMagnitude; //Adds back the recorded velocity when time continues
     }

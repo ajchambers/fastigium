@@ -28,7 +28,6 @@ public class TimeBodyRewindable : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Color defaultColor;
     public Color hoverColor;
-    public Color selectedColor;
     public Color recallColor;
     
     bool isSelected;
@@ -92,25 +91,29 @@ public class TimeBodyRewindable : MonoBehaviour
     }
 
     public void ContinueTime() {
-        if ((GetComponent<Enemy2>() != null) && (GetComponent<FallingPlatform>() != null)) {
+        // if the object is NOT a FallingPlatform, return its rigidbody to dynamic mode
+        if (GetComponent<FallingPlatform>() == null) {
             rb.isKinematic = false;
         }
+
         IsStopped = false;
         StopRewind();
         // rb.velocity = recordedVelocity * recordedMagnitude; //Adds back the recorded velocity when time continues
     }
 
- 	public void StartRewind () {
+ 	public void StartRewind() {
+        tmInstance.somethingIsRewinding = true;
 		isRewinding = true;
 		rb.isKinematic = true;
 	}
 
-	public void StopRewind () {
+	public void StopRewind() {
+        tmInstance.somethingIsRewinding = false;
 		isRewinding = false;
 		// rb.isKinematic = false;
 	}
 
- 	void Rewind () {
+ 	void Rewind() {
 		if (pointsInTime.Count > 0) {
 			PointInTime pointInTime = pointsInTime[0];
             transform.position = pointInTime.position;
@@ -121,13 +124,13 @@ public class TimeBodyRewindable : MonoBehaviour
 		}
 	} 
 
-	void Record () {
+	void Record() {
             // removes the old positions in pointsInTime list when recordTime has passed
             if (pointsInTime.Count > Mathf.Round(recordTime / Time.fixedDeltaTime)) {
                 pointsInTime.RemoveAt(pointsInTime.Count - 1);
             }
 
-            // record if the object is moving
+            // record position if the object is moving
             if (isMoving) {
                 pointsInTime.Insert(0, new PointInTime(transform.position, transform.rotation));
             }

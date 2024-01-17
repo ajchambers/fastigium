@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.5764706, g: 0.5764706, b: 0.5764706, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -151,10 +151,9 @@ MonoBehaviour:
   TimeBeforeAffected: 0
   recordTime: 10
   spriteRenderer: {fileID: 0}
-  defaultColor: {r: 0, g: 0.28235295, b: 1, a: 1}
-  hoverColor: {r: 0, g: 0.87843144, b: 1, a: 1}
-  selectedColor: {r: 0, g: 1, b: 0.54709053, a: 0}
-  recallColor: {r: 0, g: 1, b: 0.19517922, a: 1}
+  defaultColor: {r: 0.2627451, g: 0.2627451, b: 0.2627451, a: 1}
+  hoverColor: {r: 0.5411765, g: 0.5411765, b: 0.5411765, a: 1}
+  recallColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
 --- !u!114 &8317993900133812432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,3 +179,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawner: {fileID: 0}
+  direction: 
+  speed: 0
