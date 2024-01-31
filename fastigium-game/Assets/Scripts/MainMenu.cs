@@ -20,6 +20,8 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void Play() {
+        SceneController.scInstance.previousScene = "MainMenu";
+        SceneController.scInstance.currentScene = SaveManager.smInstance.gameData.currentScene;
         SaveManager.smInstance.ResumeGame();
     }
 
@@ -60,6 +62,8 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void Options() {
+        SceneController.scInstance.currentScene = "OptionsMenu";
+        SceneController.scInstance.previousScene = "MainMenu";
         SceneManager.LoadScene("OptionsMenu");
     }
 

@@ -31,6 +31,7 @@ Transform:
   - {fileID: 3313896081650310051}
   - {fileID: 1032155382431094842}
   - {fileID: 565899358142321731}
+  - {fileID: 5011589651245913225}
   - {fileID: 812774588136763039}
   - {fileID: 1477819021362597660}
   - {fileID: 3995026160586156346}
@@ -70,7 +71,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 336226617404520419}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4371997797863617209
 MonoBehaviour:
@@ -84,9 +85,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fec2b9417146945a3fc317d3aaef06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1Color: {r: 0.9960785, g: 0.83921576, b: 0, a: 1}
-  p2Color: {r: 0.9058824, g: 0.3529412, b: 0.18823531, a: 1}
-  p3Color: {r: 0.8000001, g: 0.18823531, b: 0.27058825, a: 1}
+  p1Color: {r: 0.4156863, g: 0.4156863, b: 0.4156863, a: 1}
+  p2Color: {r: 0.4156863, g: 0.4156863, b: 0.4156863, a: 1}
+  p3Color: {r: 0.4156863, g: 0.4156863, b: 0.4156863, a: 1}
   cam: {fileID: 0}
 --- !u!1 &1266589193728549080
 GameObject:
@@ -118,7 +119,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 336226617404520419}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &17582087847694683
 MonoBehaviour:
@@ -165,7 +166,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 336226617404520419}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5196006021225759059
 MonoBehaviour:
@@ -179,6 +180,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20232314073e4ca458110d2998286067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameData:
+    deathCount: 0
+    playerPosition: {x: -16, y: -1, z: 0}
+    score: 0
+    currentScene: p1s1
+    respawnPoint: {x: -16, y: -1, z: 0}
+    coinData:
+      keys: []
+      values: 
+    enemy1data:
+      keys: []
+      values: []
+    enemy2data:
+      keys: []
+      values: []
   fileName: 
   player: {fileID: 0}
   pauseMenuUI: {fileID: 2815165588166962504}
@@ -260,7 +276,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 336226617404520419}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8217239785317974776
 MonoBehaviour:
@@ -275,6 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScene: 
+  previousScene: 
 --- !u!1 &5023013310100185909
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,7 +375,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 336226617404520419}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4827871060759568583
 MonoBehaviour:
@@ -580,11 +597,23 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+  - name: MenuMusic
+    clip: {fileID: 8300000, guid: 4941bbec22bc0fb44b6c3630d86fe57b, type: 3}
+    volume: 0.297
     pitch: 0
-    loop: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: MainMusic
+    clip: {fileID: 8300000, guid: ab83d4f97182db048838cf304d5193a2, type: 3}
+    volume: 0.309
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: CutsceneMusic
+    clip: {fileID: 8300000, guid: a5ffef4beb5b3fa43a80b17177fe428d, type: 3}
+    volume: 0.327
+    pitch: 0
+    loop: 1
     source: {fileID: 0}
   - name: 
     clip: {fileID: 0}
@@ -604,18 +633,70 @@ MonoBehaviour:
     pitch: 0
     loop: 0
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+--- !u!1 &8040402343643035942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5011589651245913225}
+  - component: {fileID: 6465772621689096576}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5011589651245913225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040402343643035942}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 336226617404520419}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6465772621689096576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8040402343643035942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1fb9c96e43e0af4f8cdc10d37e2b72e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  songs:
+  - name: Menu
+    clip: {fileID: 8300000, guid: 4941bbec22bc0fb44b6c3630d86fe57b, type: 3}
+    volume: 0.3
     pitch: 0
-    loop: 0
+    loop: 1
     source: {fileID: 0}
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
+  - name: Cutscene
+    clip: {fileID: 8300000, guid: a5ffef4beb5b3fa43a80b17177fe428d, type: 3}
+    volume: 0.3
     pitch: 0
-    loop: 0
+    loop: 1
     source: {fileID: 0}
+  - name: Main
+    clip: {fileID: 8300000, guid: ab83d4f97182db048838cf304d5193a2, type: 3}
+    volume: 0.075
+    pitch: 0
+    loop: 1
+    source: {fileID: 0}
+  mmInstance: {fileID: 0}
 --- !u!1001 &443085845191878117
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -693,7 +774,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3833498029067987678, guid: 9a70a354160d33f4596d3307d5c9f94b, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 3833498029067987678, guid: 9a70a354160d33f4596d3307d5c9f94b, type: 3}
       propertyPath: m_AnchorMax.x

@@ -32,11 +32,10 @@ public class VisualsManager : MonoBehaviour {
 
     private void UpdateBackgroundColor() {
         string name = SceneManager.GetActiveScene().name.Substring(0, 2);
-        Debug.Log(name);
 
         switch(name) {
             case "p1":
-                Debug.Log("Changing background color to " + p1Color);
+                // Debug.Log("Changing background color to " + p1Color);
                 SetBackgroundColor(p1Color);
                 break;
             case "p2":
@@ -46,7 +45,7 @@ public class VisualsManager : MonoBehaviour {
                 SetBackgroundColor(p3Color);
                 break;
             default:
-                Debug.Log("Scene name isn't p1, p2, or p3");
+                // Debug.Log("Scene name isn't p1, p2, or p3");
                 break;
         }        
     }
@@ -54,11 +53,11 @@ public class VisualsManager : MonoBehaviour {
     private void SetBackgroundColor(Color c) {
         if (cam != null) {
             cam.backgroundColor = c;
-            Debug.Log("Set background color to " + c);
+            // Debug.Log("Set background color to " + c);
         } else {
             UpdateCamera();
             cam.backgroundColor = c;
-            Debug.Log("Set background color to " + c);
+            // Debug.Log("Set background color to " + c);
         }
     }
 

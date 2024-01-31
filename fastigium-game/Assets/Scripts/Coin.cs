@@ -12,8 +12,8 @@ public class Coin : MonoBehaviour, ISaveable {
     private float initialYpos;
     private float phaseOffset;
 
-    public Color minColor = Color.red;
-    public Color maxColor = Color.yellow;
+    public Color minColor;
+    public Color maxColor;
 
     private SpriteRenderer spriteRenderer;
 
@@ -41,12 +41,9 @@ public class Coin : MonoBehaviour, ISaveable {
     }
 
     private void RandomizeColor() {
-        float randomR = Random.Range(minColor.r, maxColor.r);
-        float randomG = Random.Range(minColor.g, maxColor.g);
-        float randomB = Random.Range(minColor.b, maxColor.b);
-        float randomA = Random.Range(minColor.a, maxColor.a);
+        float random = Random.Range(minColor.r, maxColor.r);
 
-        Color randomColor = new Color(randomR, randomG, randomB, randomA);
+        Color randomColor = new Color(random, random, random);
         spriteRenderer.color = randomColor;
     }
 

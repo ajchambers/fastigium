@@ -82,6 +82,10 @@ public class UIManager : MonoBehaviour, IManager {
         Destroy(GameObject.Find("Player"));
         // (GameObject.Find("UICanvas")).SetActive(false);
 
+        // update SceneController current scene (for music purposes)
+        SceneController.scInstance.currentScene = "MainMenu";
+        SceneController.scInstance.previousScene = "pXsX";
+
         SceneManager.LoadScene("MainMenu");
     }
 

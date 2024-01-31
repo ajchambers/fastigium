@@ -11,7 +11,7 @@ public class SaveManager : MonoBehaviour, IManager {
     public static TimeManager tmInstance;
     public static UIManager umInstance;
 
-    private GameData gameData;
+    public GameData gameData;
     private List<ISaveable> saveableObjects;
     private DataFileHandler fileHandler;
 

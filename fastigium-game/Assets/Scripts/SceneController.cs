@@ -10,8 +10,9 @@ public class SceneController : MonoBehaviour, ISaveable {
     public static TimeManager tmInstance;
     public static UIManager umInstance;
     public static DialogueManager dmInstance;
-
     public string currentScene;
+    public string previousScene;
+
 
     private void Start() {
         LookForManagers();
@@ -29,6 +30,9 @@ public class SceneController : MonoBehaviour, ISaveable {
     public void NextLevel(string sceneName, Vector3 spawnPoint) {
         // save data in pre transition scene
         smInstance.SaveGame();
+
+        // save previous scene name
+        previousScene = SceneManager.GetActiveScene().name;
 
         // load the next scene
         SceneManager.LoadScene(sceneName);

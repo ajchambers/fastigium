@@ -22,6 +22,8 @@ public class OptionsMenu : MonoBehaviour {
     }
 
     public void Back() {
+        SceneController.scInstance.currentScene = "MainMenu";
+        SceneController.scInstance.previousScene = "OptionsMenu";
         SceneManager.LoadScene("MainMenu");
     }
 
