@@ -26,7 +26,7 @@ public class GameData {
         this.respawnPoint = new Vector3(-16, -1, 0);
 
         // scene controller
-        this.currentScene = "p1s1";
+        this.currentScene = "1";
 
         // this.playerPosition = new Vector3(-16, -8, 0);
 

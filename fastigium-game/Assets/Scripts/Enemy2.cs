@@ -105,10 +105,19 @@ public class Enemy2 : MonoBehaviour, ISaveable {
         }
     }
    
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.CompareTag("Missile")) {
+    // private void OnTriggerEnter2D(Collider2D collision) {
+    //     if (collision.CompareTag("Missile")) {
+    //         Die();
+    //     }
+    // }
+
+
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if(collision.gameObject.tag == "Player")
+            GeneralManager.gmInstance.KillPlayer();
+      
+        if (collision.gameObject.tag == "Missile")
             Die();
-        }
     }
 
     private void DetermineIfCanMove() {

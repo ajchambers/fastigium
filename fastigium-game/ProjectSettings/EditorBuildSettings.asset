@@ -27,96 +27,93 @@ EditorBuildSettings:
     path: Assets/Scenes/PhysicsTest.unity
     guid: aad81697b4180aa4bb2d913f76ccf16b
   - enabled: 1
-    path: Assets/Scenes/p1/p1s1.unity
+    path: Assets/Scenes/p1/1.unity
     guid: 921ff4ef597e2724d987ba0f1009b903
   - enabled: 1
-    path: Assets/Scenes/p1/p1s2.unity
+    path: Assets/Scenes/p1/2.unity
     guid: 8956c2c80a55864449015476c76b50fc
   - enabled: 1
-    path: Assets/Scenes/p1/p1s3.unity
+    path: Assets/Scenes/p1/3.unity
     guid: ff86370beb5bbc849a9afe520eb85252
   - enabled: 1
-    path: Assets/Scenes/p1/p1s4.unity
+    path: Assets/Scenes/p1/4.unity
     guid: cf9e87f0a84b1b04e96fa6b91eeff0ac
   - enabled: 1
-    path: Assets/Scenes/p1/p1s5.unity
+    path: Assets/Scenes/p1/5.unity
     guid: 014c9480f36c0d94eab4aaac16ba7923
   - enabled: 1
-    path: Assets/Scenes/p1/p1s6.unity
+    path: Assets/Scenes/p1/6.unity
     guid: 841e9d4b5fbcaf948b9b53a3cb169850
   - enabled: 1
-    path: Assets/Scenes/p1/p1s7.unity
+    path: Assets/Scenes/p1/7.unity
     guid: ce04a7c43b641a64899492233ce4f8f2
   - enabled: 1
-    path: Assets/Scenes/p1/p1s8.unity
+    path: Assets/Scenes/p1/8.unity
     guid: de68495016acb51488eeff141fe63764
   - enabled: 1
-    path: Assets/Scenes/p1/p1s9.unity
+    path: Assets/Scenes/p1/9.unity
     guid: 28abc34fb269ecb47adac9fd0d2304e2
-  - enabled: 1
-    path: Assets/Scenes/p1/p1s10.unity
+  - enabled: 0
+    path: Assets/Scenes/unused/p1s10.unity
     guid: 25fcaab220fde0a428c88bbe9fb816f7
   - enabled: 1
-    path: Assets/Scenes/p2/p2s1.unity
+    path: Assets/Scenes/p2/10.unity
     guid: 0af0eb45d9d67e645aa66fc17d5d371a
   - enabled: 1
-    path: Assets/Scenes/p2/p2s2.unity
+    path: Assets/Scenes/p2/11.unity
     guid: 83724db2dd19c2b41a141dfca072b07e
   - enabled: 1
-    path: Assets/Scenes/p2/p2s3.unity
+    path: Assets/Scenes/p2/12.unity
     guid: 6243c01b762aeed4ab34a0dbb1ba5007
   - enabled: 1
-    path: Assets/Scenes/p2/p2s4.unity
+    path: Assets/Scenes/p2/13.unity
     guid: 10ef224861a35dc47a98113fa3722035
   - enabled: 1
-    path: Assets/Scenes/p2/p2s5.unity
+    path: Assets/Scenes/p2/14.unity
     guid: 928cb72358a7d614cb8d4b96965d83a5
   - enabled: 1
-    path: Assets/Scenes/p2/p2s6.unity
+    path: Assets/Scenes/p2/15.unity
     guid: fe4fa162faac8f74185a7e1eeafa1495
   - enabled: 1
-    path: Assets/Scenes/p2/p2s7.unity
+    path: Assets/Scenes/p2/16.unity
     guid: dccdc3d64a4bfb840a6e96b135ca8c5d
   - enabled: 1
-    path: Assets/Scenes/p2/p2s8.unity
+    path: Assets/Scenes/p2/17.unity
     guid: 480ad5df3e849ef4588beabece902366
   - enabled: 1
-    path: Assets/Scenes/p2/p2s9.unity
+    path: Assets/Scenes/p2/18.unity
     guid: e8278a55c0d468548b34432f9975150f
-  - enabled: 1
-    path: Assets/Scenes/p2/p2s10.unity
+  - enabled: 0
+    path: Assets/Scenes/unused/p2s10.unity
     guid: 68719db31063f674d94a8814051532f9
   - enabled: 1
-    path: Assets/Scenes/p3/p3s1.unity
+    path: Assets/Scenes/p3/19.unity
     guid: ae5e8ec22c22bdc45acebe2fb4401f58
   - enabled: 1
-    path: Assets/Scenes/p3/p3s2.unity
+    path: Assets/Scenes/p3/20.unity
     guid: 22296cddc0057ea4abf4927939400968
   - enabled: 1
-    path: Assets/Scenes/p3/p3s3.unity
+    path: Assets/Scenes/p3/21.unity
     guid: 23dd4814b6b0c4c4d8e7d956bf28f4e2
   - enabled: 1
-    path: Assets/Scenes/p3/p3s4.unity
+    path: Assets/Scenes/p3/22.unity
     guid: 574341f2cbc6a3c468d8c9e4db4d476a
   - enabled: 1
-    path: Assets/Scenes/p3/p3s5.unity
+    path: Assets/Scenes/p3/23.unity
     guid: 075de633daf89a1409332b713340038f
   - enabled: 1
-    path: Assets/Scenes/p3/p3s6.unity
+    path: Assets/Scenes/p3/24.unity
     guid: 15946611619668e4c9b9f3f65fdb6531
   - enabled: 1
-    path: Assets/Scenes/p3/p3s7.unity
+    path: Assets/Scenes/p3/25.unity
     guid: 9b95c7752cbbdf84abdce0bb8b9018ca
   - enabled: 1
-    path: Assets/Scenes/p3/p3s8.unity
+    path: Assets/Scenes/p3/26.unity
     guid: a10e0a6e3d0199a409a30f1c1af5d9b2
   - enabled: 1
-    path: Assets/Scenes/p3/p3s9.unity
+    path: Assets/Scenes/p3/27.unity
     guid: 3f16ba0fd9d04294084a75231fa2401c
   - enabled: 1
-    path: Assets/Scenes/p3/p3s10.unity
-    guid: 18bf7959f1ed4e24dabf1a0bf0cd5ad4
-  - enabled: 1
-    path: Assets/Scenes/p3/bedroom.unity
+    path: Assets/Scenes/p3/28.unity
     guid: d7bc68bafe055a248b2de0ed22fba4c9
   m_configObjects: {}

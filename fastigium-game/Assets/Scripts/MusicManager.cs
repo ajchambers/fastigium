@@ -52,7 +52,6 @@ public class MusicManager : MonoBehaviour {
     }
 
     private string DetermineSceneType(string sceneName) {
-        // Debug.Log(sceneName);
         if (sceneName == "MainMenu" || sceneName == "OptionsMenu" || sceneName == "") {
             return "Menu";
         } else if (sceneName[0] == 'c') {
@@ -66,7 +65,7 @@ public class MusicManager : MonoBehaviour {
         if ((currentSceneName == "MainMenu") || (currentSceneName == "OptionsMenu")) {
             StopAllSongs();
             Play("Menu");
-        } else if ((currentSceneName == "cs1") || (currentSceneName == "cs2")) {
+        } else if ((currentSceneName == "endCS")) {
             StopAllSongs();
             Play("Cutscene");
         } else {

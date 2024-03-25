@@ -92,7 +92,6 @@ namespace TarodevController {
                 DontDestroyOnLoad(gameObject);
             } else {
                 Destroy(gameObject);
-                Debug.Log("Destroyed instance of player because there was already one in the scene.");
             }
 
             _rb = GetComponent<Rigidbody2D>();

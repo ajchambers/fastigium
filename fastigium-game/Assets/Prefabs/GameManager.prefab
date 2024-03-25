@@ -85,9 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1fec2b9417146945a3fc317d3aaef06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1Color: {r: 0.4156863, g: 0.4156863, b: 0.4156863, a: 1}
-  p2Color: {r: 0.4156863, g: 0.4156863, b: 0.4156863, a: 1}
-  p3Color: {r: 0.4156863, g: 0.4156863, b: 0.4156863, a: 1}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}
+  bgColor: {r: 1, g: 1, b: 1, a: 1}
   cam: {fileID: 0}
 --- !u!1 &1266589193728549080
 GameObject:
