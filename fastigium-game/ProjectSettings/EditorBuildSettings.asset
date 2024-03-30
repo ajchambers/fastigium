@@ -12,19 +12,19 @@ EditorBuildSettings:
     path: Assets/Scenes/OptionsMenu.unity
     guid: 3cef9f292def01b46b8e0d4548fd5ad4
   - enabled: 1
-    path: Assets/Scenes/t0.unity
+    path: Assets/Scenes/unused/t0.unity
     guid: d22e4fd5d02bcb241bf47ded5987feaf
   - enabled: 0
-    path: Assets/Scenes/t1.unity
+    path: Assets/Scenes/unused/t1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
-    path: Assets/Scenes/t2.unity
+    path: Assets/Scenes/unused/t2.unity
     guid: b64ab15ea5c79744191e9941d8c6ecef
   - enabled: 0
-    path: Assets/Scenes/t3.unity
+    path: Assets/Scenes/unused/t3.unity
     guid: b98f5c24d3ca23642aee7a5991aa1ffa
   - enabled: 0
-    path: Assets/Scenes/PhysicsTest.unity
+    path: Assets/Scenes/unused/PhysicsTest.unity
     guid: aad81697b4180aa4bb2d913f76ccf16b
   - enabled: 1
     path: Assets/Scenes/p1/1.unity
@@ -116,4 +116,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/p3/28.unity
     guid: d7bc68bafe055a248b2de0ed22fba4c9
+  - enabled: 1
+    path: Assets/Scenes/EndCutscene.unity
+    guid: c9d21373f58f9d94b9709914d72d1209
+  - enabled: 1
+    path: Assets/Scenes/ScoreScreen.unity
+    guid: a8aabbe5dd7bfd443b92a58c42ae81fc
   m_configObjects: {}

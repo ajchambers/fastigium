@@ -1,0 +1,332 @@
+{
+    "deathCount": 69,
+    "playerPosition": {
+        "x": 0.0,
+        "y": 0.44091796875,
+        "z": 0.0
+    },
+    "score": 420,
+    "currentScene": "28",
+    "respawnPoint": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "coinData": {
+        "keys": [
+            "44fa9a2d-2abd-416f-bd14-edfbf6a987fe",
+            "1cf32f37-1b9c-4abe-97c8-9e75c114b168",
+            "d6a0920d-4c49-4de2-b79f-c027afc57cab",
+            "5566583d-d92c-4c7a-92b3-36fa7207926a",
+            "639a9d45-8e12-4015-86d9-92de9344b553",
+            "9c7b8736-a6f2-4f67-a93c-a222feaffe9d",
+            "78c60834-a15e-48c9-81cc-c9e580554098",
+            "a14f52b4-f472-4706-9dda-6c88418d3bbe",
+            "57a6a654-1849-4a99-a447-3ea3feb1ca5c",
+            "55d4ea81-9a62-4f89-9e1a-239b1722ab57",
+            "7539745f-3971-4513-8976-acf70d0f4910",
+            "89d811f4-a2f3-4d26-9767-d83ca8a9cd46",
+            "70554b88-9076-446f-9aca-a254ba29ae68",
+            "c976b1c8-232b-4aff-972c-5ce7983e7f52",
+            "82f5ee2e-790d-4927-8dd9-8ff79d03ada7",
+            "f6bf478e-9c76-4356-a2c9-73869e5ab4d0",
+            "c7ce7761-d096-4c19-a741-e67b9332bec2",
+            "dfefdeca-80b2-451d-b6d0-80c8d8a4113f",
+            "5c2891a5-9c8f-4d55-8e4b-f31a7af105c0",
+            "98b8e7aa-da39-4c43-b63f-32477f89b26e",
+            "372bce11-1564-4071-b3db-2e93a6df1c4e",
+            "f0be1ba1-bff6-4ea6-b638-c7cd77505f4c",
+            "36d9a85a-d5a8-402d-abc5-6949921f53b0",
+            "e6e33bc4-48b5-42f9-b1d7-abe37c405396",
+            "63153df2-50b5-470c-a07f-ae35b46894ed",
+            "45bcdc57-7fe4-4383-a8b9-a98a6666a077",
+            "c6dd7e56-740f-4748-8faf-494da4303747",
+            "85551914-63ff-455e-bdf3-df0e17aa5067",
+            "476775f3-e14f-4c71-a116-2c71e0cba2c7",
+            "1390d5c5-7835-4b2e-a22c-992b18ac6047",
+            "eaf87f1d-53f5-404a-8e3c-751c69c63e98",
+            "bb7120e5-d078-4ef4-99e1-1fdf80291491",
+            "8ea7c5d8-ae29-4677-aba4-b4a95af15910",
+            "56209a3f-8ed0-40a9-a633-dc984623d684",
+            "41d26355-64b6-4383-8798-ef1fa8b1fa97",
+            "",
+            "03d98832-19e1-498c-869c-32358c5d11e3",
+            "6c3fb187-6f3a-4edf-a726-fca0694c6e7e",
+            "0df58481-9a8c-49a1-85c3-16b286ff0446",
+            "4c22aee5-832d-4264-8506-e3c19ac22036",
+            "e3283dd2-07e7-4ef8-bb72-70a40e71fa63",
+            "e0393e9d-44fd-4524-9922-9512fce3457e",
+            "7f94bcdc-a13d-471f-8ae4-1f71f00e8ae5",
+            "5631ae0b-477d-4f8c-8de3-e11bb823f93e",
+            "fd86fac8-728e-4378-ba56-080dd7258eb5",
+            "717e6f9d-d8f8-43d1-8dba-7753e3a67784",
+            "238669be-0d37-47c7-89a4-fbcaf2b888e9",
+            "7178286b-7d4f-457e-bdd0-746dbffa8828",
+            "8098caa8-0c06-49fd-994c-ccfcb855802d",
+            "6f9f5c20-1572-48f2-ad96-23ec47d79321",
+            "eb01177c-6ead-4c9a-9996-62197e496698",
+            "4e84ef1b-7d66-4ae6-bc2d-4ee9063b458a",
+            "eaebbc7e-f157-4bad-b35a-383643434e2f",
+            "3cbcfd3c-a548-4703-8b49-edc59070bbfa",
+            "58e39073-9a92-45ca-a3e3-bf4bd1f38c9e",
+            "754e8490-ec89-409a-938a-440ff47fae70",
+            "1da82d5b-6e8f-40bf-a42c-a766741296ea",
+            "fbfd6417-5661-491f-b46a-c440c6d7d58a",
+            "65afab5d-5fcf-44aa-9821-ea449a12d971",
+            "599bfd9d-806b-4bd2-b6a1-35f2c4bc04a7",
+            "776b14c9-776a-4397-beba-2eed08060dd2",
+            "c4d5874f-71e8-4deb-9f70-d77b5a0b0861",
+            "e95bcf10-be12-45fe-8493-8dec1ced7e8c",
+            "b51e99a5-f99d-4a13-8706-734fb9ce1bba",
+            "78dc183b-3bab-4f72-8f88-c9c8ea1acc4f",
+            "09d1d556-dad7-4e3b-b056-caa0852cfd00",
+            "38b914af-4daf-4c4e-bf0a-dfe9767ed2b1",
+            "cfd6d223-44fa-4aa2-b8f6-680ac3563cb8",
+            "a55c8b7a-6fa1-4ce1-9a18-0340f6c5568c",
+            "07315422-3ca9-44b1-bf0d-ce6bdbc83b6c",
+            "5e5b7074-40db-49b4-8f55-23761949536e",
+            "b1a6f901-7ac1-480e-9dd9-1b23d25c3d0f",
+            "60e849f8-e7c6-4ffa-8110-ca5b45dc35e8",
+            "2da2a3b0-68a4-4e2e-99a2-0af0d54ea4e4",
+            "e5b0b30e-8c8d-4f2a-add8-a6891a880c94",
+            "fbe25bf1-3a61-477a-8600-467ce5be45c4",
+            "5b4d4039-a5d5-450f-9ce8-1e350ee0fb0f",
+            "494a7156-2d78-4c2b-b4a5-7848d9b9561c"
+        ],
+        "values": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+        ]
+    },
+    "enemy1data": {
+        "keys": [
+            "1c43ba31-5e17-4733-a68b-803991a21153",
+            "f5ba316d-529b-46c4-b335-d8d2982583be",
+            "bffd6f3a-aa5a-495c-9481-ed4991a44b3a",
+            "7d96c67d-81e2-477b-891b-5a786e73f78a",
+            "16404056-6653-4f21-bde5-79605993b8f4",
+            "b0e434d7-49d0-4e88-b55d-b77a718d1baf"
+        ],
+        "values": [
+            {
+                "isDead": false,
+                "position": {
+                    "x": 1.0278676748275757,
+                    "y": -7.994961738586426,
+                    "z": 0.0
+                },
+                "initialYpos": 0.0,
+                "facingRight": true,
+                "hasFoundPlayer": false,
+                "skin": 0
+            },
+            {
+                "isDead": true,
+                "position": {
+                    "x": -4.60133695602417,
+                    "y": -12.401092529296875,
+                    "z": 0.0
+                },
+                "initialYpos": 0.0,
+                "facingRight": false,
+                "hasFoundPlayer": false,
+                "skin": 0
+            },
+            {
+                "isDead": true,
+                "position": {
+                    "x": -12.26333999633789,
+                    "y": -12.285685539245606,
+                    "z": 0.0
+                },
+                "initialYpos": 0.0,
+                "facingRight": false,
+                "hasFoundPlayer": false,
+                "skin": 0
+            },
+            {
+                "isDead": true,
+                "position": {
+                    "x": 7.8254241943359379,
+                    "y": -12.135435104370118,
+                    "z": 0.0
+                },
+                "initialYpos": 0.0,
+                "facingRight": false,
+                "hasFoundPlayer": false,
+                "skin": 0
+            },
+            {
+                "isDead": true,
+                "position": {
+                    "x": 9.768091201782227,
+                    "y": -12.706879615783692,
+                    "z": 0.0
+                },
+                "initialYpos": 0.0,
+                "facingRight": false,
+                "hasFoundPlayer": false,
+                "skin": 0
+            },
+            {
+                "isDead": false,
+                "position": {
+                    "x": 3.3505935668945314,
+                    "y": -1.9950114488601685,
+                    "z": 0.0
+                },
+                "initialYpos": 0.0,
+                "facingRight": true,
+                "hasFoundPlayer": false,
+                "skin": 0
+            }
+        ]
+    },
+    "enemy2data": {
+        "keys": [
+            "0bee32d0-aa18-4b25-a8cb-292d18231e46",
+            "396e1bd0-b7a3-44ce-8ce3-25b780b11d8a",
+            "b0a20cdf-192a-4a1a-9883-8c48c496be5f",
+            "",
+            "4d50ac6a-bc2e-4236-a5ba-736ff947326d"
+        ],
+        "values": [
+            {
+                "isDead": false,
+                "position": {
+                    "x": 0.10000014305114746,
+                    "y": 6.701217174530029,
+                    "z": 0.0
+                },
+                "initialYpos": 7.300000190734863,
+                "facingRight": true,
+                "hasFoundPlayer": false,
+                "skin": 0
+            },
+            {
+                "isDead": false,
+                "position": {
+                    "x": -3.5500001907348635,
+                    "y": 6.870094299316406,
+                    "z": 0.0
+                },
+                "initialYpos": 7.090000152587891,
+                "facingRight": false,
+                "hasFoundPlayer": false,
+                "skin": 0
+            },
+            {
+                "isDead": false,
+                "position": {
+                    "x": -8.618392944335938,
+                    "y": 3.952434539794922,
+                    "z": 0.0
+                },
+                "initialYpos": 3.4000000953674318,
+                "facingRight": true,
+                "hasFoundPlayer": false,
+                "skin": 0
+            },
+            {
+                "isDead": false,
+                "position": {
+                    "x": 7.318125247955322,
+                    "y": 2.559286117553711,
+                    "z": 0.0
+                },
+                "initialYpos": 2.9363865852355959,
+                "facingRight": true,
+                "hasFoundPlayer": false,
+                "skin": 0
+            },
+            {
+                "isDead": false,
+                "position": {
+                    "x": 10.318098068237305,
+                    "y": 6.178214073181152,
+                    "z": 0.0
+                },
+                "initialYpos": 6.774308204650879,
+                "facingRight": true,
+                "hasFoundPlayer": false,
+                "skin": 0
+            }
+        ]
+    }
+}

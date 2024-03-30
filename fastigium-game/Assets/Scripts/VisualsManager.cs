@@ -26,26 +26,33 @@ public class VisualsManager : MonoBehaviour {
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode) {
+        // make the main menu default colors
         if (SceneManager.GetActiveScene().name == "MainMenu") {
             spriteColor = Color.white;
             bgColor = Color.white;            
         }
 
         string currentSceneName = SceneManager.GetActiveScene().name;
-        int sceneNum = System.Convert.ToInt32(currentSceneName);
+        int sceneNum;
+
+        if (currentSceneName == "MainMenu" || currentSceneName == "EndCutscene" || currentSceneName == "OptionsMenu" ||currentSceneName == "ScoreScreen") {
+            sceneNum = 0;
+        } else {
+            sceneNum = System.Convert.ToInt32(currentSceneName);
+        }
 
         if (sceneNum >= 1 && sceneNum <= 28 && sceneNum % 1 == 0) {
             SetColors(sceneNum);
+            UpdateRegTilemap();
+            UpdateFineTilemap("Dangerous");
+            UpdateFineTilemap("Climbable");
+            UpdateCamera();
+            UpdateBackgroundColor();
         } else {
             spriteColor = Color.white;
             bgColor = Color.white;
         }
-        
-        UpdateRegTilemap();
-        UpdateFineTilemap("Dangerous");
-        UpdateFineTilemap("Climbable");
-        UpdateCamera();
-        UpdateBackgroundColor();
+    
     }
 
     private void SetColors(int value) {
