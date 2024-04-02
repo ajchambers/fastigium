@@ -104,14 +104,7 @@ public class Enemy2 : MonoBehaviour, ISaveable {
             gameObject.SetActive(false);
         }
     }
-   
-    // private void OnTriggerEnter2D(Collider2D collision) {
-    //     if (collision.CompareTag("Missile")) {
-    //         Die();
-    //     }
-    // }
-
-
+ 
     private void OnCollisionEnter2D(Collision2D collision) {
         if(collision.gameObject.tag == "Player")
             GeneralManager.gmInstance.KillPlayer();

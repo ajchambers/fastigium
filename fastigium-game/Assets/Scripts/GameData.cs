@@ -24,17 +24,9 @@ public class GameData {
 
         // game manager info
         this.respawnPoint = new Vector3(-16, -1, 0);
-
+        
         // scene controller
         this.currentScene = "1";
-
-        // this.playerPosition = new Vector3(-16, -8, 0);
-
-        // // game manager info
-        // this.respawnPoint = new Vector3(-16, -8, 0);
-
-        // // scene controller
-        // this.currentScene = "t0";
 
         // coins
         this.coinData = new SerializableDictionary<string, bool>();

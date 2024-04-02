@@ -34,14 +34,14 @@ public class SceneController : MonoBehaviour, ISaveable {
         // save previous scene name
         previousScene = SceneManager.GetActiveScene().name;
 
+        // move player to the correct point in the next level
+        GameObject.FindWithTag("Player").transform.position = spawnPoint;
+
         // load the next scene
         SceneManager.LoadScene(sceneName);
 
         // update the current scene attribute
         SetCurrentScene(sceneName);
-
-        // move player to the correct point in the next level
-        GameObject.FindWithTag("Player").transform.position = spawnPoint;
 
         // if the dialogue box is on, turn it off
         dmInstance.EndDialogue();

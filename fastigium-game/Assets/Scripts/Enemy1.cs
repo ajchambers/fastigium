@@ -44,7 +44,7 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     [Header("For Time Mechanic")]
     public bool isFrozen;
 
-    // private Animator enemyAnim;
+    public Animator animator;
     private Rigidbody2D enemyRB;
     GeneralManager gm;
 
@@ -59,6 +59,12 @@ public class Enemy1 : MonoBehaviour, ISaveable {
     }
 
     void FixedUpdate() {
+        if(TimeManager.tmInstance.isTimeStopped) {
+            animator.SetBool("isTimeStopped", true);
+        } else if (!TimeManager.tmInstance.isTimeStopped) {
+            animator.SetBool("isTimeStopped", false);
+        }
+                   
         checkingGround = Physics2D.OverlapCircle(groundCheckPoint.position, circleRadius, groundLayer);
         checkingWall = Physics2D.OverlapCircle(wallCheckPoint.position, circleRadius, groundLayer);
         
@@ -69,6 +75,7 @@ public class Enemy1 : MonoBehaviour, ISaveable {
 
         // if time is not stopped
         if (!TimeManager.tmInstance.isTimeStopped && canMove) {
+ 
             if (canSeePlayer && isGrounded) {
                 JumpAttack();
             }
