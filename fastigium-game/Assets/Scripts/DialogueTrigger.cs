@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DialogueTrigger : MonoBehaviour {
     public Dialogue dialogue;
-    public bool willEndOnTriggerExit = false;
+    public bool willEndOnTriggerExit = true;
 
     private void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Player") {
