@@ -1680,12 +1680,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.name
+      value: Informative Sign
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: willEndOnTriggerExit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: you can double jump off of these special walls.
+      value: You can double jump off of these special walls.
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[1]
@@ -7378,12 +7386,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.name
+      value: Helpful Sign
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: willEndOnTriggerExit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: you can jump off of and slide down special walls.
+      value: You can jump off of and slide down special walls.
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[1]

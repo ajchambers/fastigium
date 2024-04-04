@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.IO;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using TarodevController;
 
 public class SaveManager : MonoBehaviour, IManager {
     public static GeneralManager gmInstance;
@@ -87,17 +90,35 @@ public class SaveManager : MonoBehaviour, IManager {
         // load save file
         this.gameData = fileHandler.Load();
 
+        // if there's a file that shows the player has finished the game...
+        if (this.gameData.hasFinishedGame) {            
+            // ...delete the previous file.
+            string fullPath = Path.Combine(Application.persistentDataPath, "save.txt");
+            try {
+                File.Delete(fullPath);
+            } catch (Exception e) {
+                Debug.Log("Couldn't delete file at " + fullPath);
+                Debug.Log(e);
+            }
+
+            this.gameData = null;
+        }
+
         // if there's no file, start a new one
-        if (this.gameData == null){
+        if (this.gameData == null) {
             NewGame();
+            Debug.Log("No save file detected. Starting a new file.");
         }
 
         // load current scene
-        SceneManager.LoadScene(gameData.currentScene); // TODO: problem area 
+        SceneManager.LoadScene(gameData.currentScene);
 
         // place a player at the spawn point
         GameObject p = Instantiate(player, gameData.playerPosition, Quaternion.identity);
         p.name = "Player";
+        
+        // if there was a preexisting player, move it to the spawn point
+        PlayerController.playerInstance.transform.position = gameData.playerPosition;
         
         // set list of Saveable objects
         this.saveableObjects = FindAllSaveableObjects();
@@ -115,6 +136,12 @@ public class SaveManager : MonoBehaviour, IManager {
             return false;
 
         if ((SceneManager.GetActiveScene().name == "OptionsMenu"))
+            return false;
+
+        // if ((SceneManager.GetActiveScene().name == "EndCutscene"))
+        //     return false;
+
+        if ((SceneManager.GetActiveScene().name == "ScoreScreen"))
             return false;
 
         if (!gmInstance.isPlayerAlive)

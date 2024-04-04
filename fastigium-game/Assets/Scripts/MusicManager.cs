@@ -65,7 +65,7 @@ public class MusicManager : MonoBehaviour {
         if ((currentSceneName == "MainMenu") || (currentSceneName == "OptionsMenu")) {
             StopAllSongs();
             Play("Menu");
-        } else if ((currentSceneName == "endCS")) {
+        } else if ((currentSceneName == "EndCutscene")) {
             StopAllSongs();
             Play("Cutscene");
         } else {

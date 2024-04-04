@@ -3901,24 +3901,32 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: dialogue.name
+      value: '***LONG*** Sign'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
+      propertyPath: willEndOnTriggerExit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.size
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[0]
-      value: stop time for 5 seconds using right click.
+      value: Stop time for 5 seconds using right click.
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[1]
-      value: right click again to continue time.
+      value: Right click again to continue time.
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[2]
-      value: this ability takes 3 seconds to recharge.
+      value: This ability takes 3 seconds to recharge.
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022913, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: dialogue.sentences.Array.data[3]
-      value: view the charge level of this ability at the bottom of the screen.
+      value: View the charge level of this ability at the bottom of the screen.
       objectReference: {fileID: 0}
     - target: {fileID: 8548939906969022925, guid: ccdb41cf4d9cea1429a74a6aef0c0a3a, type: 3}
       propertyPath: m_Name

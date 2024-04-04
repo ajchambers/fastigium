@@ -15,18 +15,20 @@ public class GameData {
     public SerializableDictionary <string, EnemyData> enemy1data;
     public SerializableDictionary <string, EnemyData> enemy2data;
 
-    // default game data when game 
+    public bool hasFinishedGame;
+
+    // default game data when game starts
     public GameData() {
         // player controller info
         this.deathCount = 0;
 
-        this.playerPosition = new Vector3(-16, -1, 0);
+        this.playerPosition = new Vector3(16, -6, 0);
 
         // game manager info
         this.respawnPoint = new Vector3(-16, -1, 0);
         
         // scene controller
-        this.currentScene = "1";
+        this.currentScene = "27";
 
         // coins
         this.coinData = new SerializableDictionary<string, bool>();
@@ -36,5 +38,7 @@ public class GameData {
 
         // enemy2s
         this.enemy2data = new SerializableDictionary<string, EnemyData>();
+
+        this.hasFinishedGame = false;
     }
 }
